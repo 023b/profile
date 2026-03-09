@@ -1,0 +1,54 @@
+class Blossom {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = -20;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = Math.random() * 0.5 + 0.3; // Very slow fall
+        this.wobbleAmount = Math.random() * 1 + 0.5;
+        this.wobbleSpeed = Math.random() * 0.02 + 0.01;
+        this.wobbleOffset = Math.random() * Math.PI * 2;
+        this.opacity = 0.6;
+        this.petals = this.generatePetals();
+    }
+
+    generatePetals() {
+        // Generate 4-5 small pixel petals in a cross/flower pattern
+        const petalCount = Math.random() > 0.5 ? 4 : 5;
+        const petals = [];
+        for (let i = 0; i < petalCount; i++) {
+            const angle = (i / petalCount) * Math.PI * 2;
+            const distance = 3;
+            petals.push({
+                x: Math.cos(angle) * distance,
+                y: Math.sin(angle) * distance
+            });
+        }
+        return petals;
+    }
+
+    update(time) {
+        this.y += this.vy;
+        this.x += this.vx + Math.sin(time * this.wobbleSpeed + this.wobbleOffset) * this.wobbleAmount * 0.01;
+        this.opacity = Math.max(0, this.opacity - 0.0008);
+    }
+
+    draw() {
+        ctx.save();
+        ctx.globalAlpha = this.opacity;
+        ctx.fillStyle = '#ffb3d9';
+
+        // Draw center pixel
+        ctx.fillRect(this.x - 1, this.y - 1, 2, 2);
+
+        // Draw petals
+        this.petals.forEach(petal => {
+            ctx.fillRect(this.x + petal.x - 1, this.y + petal.y - 1, 2, 2);
+        });
+
+        ctx.restore();
+    }
+
+    isOffScreen() {
+        return this.y > canvas.height || this.opacity <= 0;
+    }
+}

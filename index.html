@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arun Prakash S — AI Developer & Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #07090c;
+      --bg-card: #0c0e12;
+      --bg-elevated: #11141a;
+      --border: rgba(126, 168, 196, 0.15);
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #7ea8c4;
+      --accent-dim: #55758c;
+      --amber: #94a3b8;
+      --glow: rgba(126, 168, 196, 0.25);
+      --radius: 12px;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-display: 'Syne', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    #blossomCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      /* Height will be set dynamically via JS */
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Animated grid background */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(126, 168, 196, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(126, 168, 196, 0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-glow {
+      position: fixed;
+      width: 120%;
+      height: 80vh;
+      top: -20vh;
+      left: -10%;
+      background: radial-gradient(ellipse at 50% 0%, rgba(126, 168, 196, 0.08) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+      animation: floatGlow 12s ease-in-out infinite;
+    }
+
+    @keyframes floatGlow {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+      50% { transform: translate(2%, 3%) scale(1.02); opacity: 0.9; }
+    }
+
+    /* Scroll progress bar */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--amber));
+      z-index: 100;
+      transition: width 0.1s ease-out;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem 6rem;
+    }
+
+    /* ----- Hero ----- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 0 4rem;
+    }
+
+    .hero .label {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.1s forwards;
+    }
+
+    .hero h1 .accent {
+      color: var(--accent);
+      display: inline-block;
+      animation: glowPulse 3s ease-in-out infinite, floatText 4s ease-in-out infinite alternate;
+    }
+
+    .hero .tagline {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 28ch;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .hero .focus-line {
+      font-size: 1rem;
+      color: var(--text);
+      max-width: 42ch;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.3s forwards;
+    }
+
+    .hero .cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+
+    .btn {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+    }
+
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--glow);
+      animation: buttonPulse 2s infinite;
+    }
+
+    .btn-primary:hover::after {
+      left: 100%;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background: rgba(126, 168, 196, 0.08);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { filter: drop-shadow(0 0 8px var(--glow)); }
+      50% { filter: drop-shadow(0 0 16px var(--glow)); }
+    }
+
+    @keyframes floatText {
+      0%, 100% { transform: translateY(0); }
+      100% { transform: translateY(-5px); }
+    }
+
+    @keyframes buttonPulse {
+      0% { box-shadow: 0 0 0 0 rgba(126, 168, 196, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(126, 168, 196, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(126, 168, 196, 0); }
+    }
+
+    /* ----- Navigation ----- */
+    .glass-nav {
+      position: fixed;
+      top: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: rgba(12, 14, 18, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(126, 168, 196, 0.25);
+      border-radius: 99px;
+      padding: 0.5rem 0.5rem;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(126, 168, 196, 0.1);
+      display: flex;
+      gap: 0.5rem;
+      list-style: none;
+      animation: fadeDown 0.8s ease forwards;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translate(-50%, -20px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+
+    .glass-nav a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      padding: 0.4rem 1rem;
+      border-radius: 99px;
+      transition: color 0.3s, background 0.3s, transform 0.2s;
+    }
+
+    .glass-nav a:hover,
+    .glass-nav a:active {
+      color: var(--text);
+      background: rgba(126, 168, 196, 0.15);
+      transform: scale(1.05);
+    }
+
+    /* ----- Section common ----- */
+    section {
+      padding: 4rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    section:first-of-type {
+      border-top: none;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      position: relative;
+      transition: color 0.25s;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--amber));
+      transition: width 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    section:focus-within .section-title::after,
+    section:hover .section-title::after {
+      width: 100%;
+    }
+
+    /* Reveal on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px) scale(0.98);
+      transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ----- About ----- */
+    .about p {
+      color: var(--text-muted);
+      max-width: 55ch;
+      margin-bottom: 1rem;
+    }
+
+    /* ----- Focus pills ----- */
+    .focus-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .pill {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text);
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .pill {
+      animation: pillIn 0.6s ease backwards;
+    }
+
+    .pill:nth-child(1) { animation-delay: 0.05s; }
+    .pill:nth-child(2) { animation-delay: 0.1s; }
+    .pill:nth-child(3) { animation-delay: 0.15s; }
+    .pill:nth-child(4) { animation-delay: 0.2s; }
+    .pill:nth-child(5) { animation-delay: 0.25s; }
+
+    .pill:hover {
+      transform: scale(1.08);
+      border-color: var(--accent);
+      box-shadow: 0 0 24px rgba(126, 168, 196, 0.2);
+    }
+
+    @keyframes pillIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8) translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* ----- Cards (Systems / Projects) ----- */
+    .card-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s, box-shadow 0.25s, background 0.4s;
+      transform-style: preserve-3d;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(126, 168, 196, 0.04), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.7s ease;
+      pointer-events: none;
+    }
+
+    .card:hover::before {
+      left: 150%;
+    }
+
+    .card:hover {
+      transform: translateY(-6px) rotateX(2deg) rotateY(-2deg);
+      border-color: rgba(126, 168, 196, 0.3);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(126, 168, 196, 0.08);
+      background: var(--bg-elevated);
+    }
+
+    .card h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+
+    .card .meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: gap 0.2s;
+    }
+
+    .card a:hover {
+      gap: 0.6rem;
+    }
+
+    /* ----- Stack ----- */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .stack-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+
+    .stack-item:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: var(--accent);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(126, 168, 196, 0.1);
+      z-index: 10;
+    }
+
+    .stack-item .cat {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.35rem;
+    }
+
+    .stack-item .tech {
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    /* ----- Timeline (Experience / Education) ----- */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .timeline-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s, box-shadow 0.25s, background 0.4s;
+      transform-style: preserve-3d;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(126, 168, 196, 0.04), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.7s ease;
+      pointer-events: none;
+    }
+
+    .timeline-item:hover::before {
+      left: 150%;
+    }
+
+    .timeline-item:hover {
+      transform: translateY(-6px) rotateX(2deg) rotateY(-2deg);
+      border-color: rgba(126, 168, 196, 0.3);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(126, 168, 196, 0.08);
+      background: var(--bg-elevated);
+    }
+
+    .timeline-item .role {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--text);
+    }
+
+    .timeline-item .company {
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+
+    .timeline-item .when {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .timeline-item .desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+
+
+    /* ----- Certifications ----- */
+    .certs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .cert-tag {
+      position: relative;
+      font-size: 0.8rem;
+      padding: 0.4rem 0.75rem;
+      background: var(--bg-elevated);
+      border-radius: 6px;
+      color: var(--text-muted);
+      border: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .cert-tag.has-image {
+      cursor: pointer;
+    }
+
+    .cert-tag:hover {
+      color: var(--accent);
+      border-color: var(--border);
+    }
+
+    .cert-tooltip {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.5rem;
+      z-index: 100;
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(126, 168, 196, 0.1);
+      width: max-content;
+    }
+
+    .cert-tag:hover .cert-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(-10px);
+    }
+
+    .cert-tooltip img {
+      display: block;
+      max-width: 350px;
+      max-height: 250px;
+      object-fit: contain;
+      border-radius: calc(var(--radius) - 4px);
+    }
+
+    @media (max-width: 768px) {
+      .cert-tooltip {
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translate(-50%, 10px);
+        width: calc(100vw - 3rem);
+        max-width: 400px;
+        z-index: 200;
+      }
+      .cert-tag:hover .cert-tooltip {
+        transform: translate(-50%, 0);
+      }
+      .cert-tooltip img {
+        max-width: 100%;
+        max-height: 40vh;
+      }
+    }
+
+    /* ----- Direction ----- */
+    .direction-list {
+      list-style: none;
+    }
+
+    .direction-list li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--text-muted);
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .direction-list li:hover {
+      color: var(--text);
+      transform: translateX(4px);
+    }
+
+    .direction-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 1rem;
+      width: 6px;
+      height: 6px;
+      background: var(--border);
+      border-radius: 50%;
+      transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+
+    .direction-list li:hover::before {
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--glow);
+      transform: scale(1.5);
+    }
+
+    /* ----- Contact / Footer ----- */
+    footer {
+      padding: 3rem 0 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    footer .links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    footer .links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    footer .links a:hover {
+      color: var(--amber);
+      transform: scale(1.05);
+    }
+
+    footer .copy {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ----- Responsive ----- */
+    @media (max-width: 600px) {
+      .glass-nav {
+        top: auto;
+        bottom: 1.5rem;
+        transform: translate(-50%, 0);
+      }
+      .glass-nav a {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+      }
+      @keyframes fadeDown {
+        from { opacity: 0; transform: translate(-50%, 20px); }
+        to { opacity: 1; transform: translate(-50%, 0); }
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 4rem 0 3rem;
+      }
+
+      .stack-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="glass-nav" aria-label="Main Navigation">
+    <a href="#home">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Work</a>
+    <a href="#education">Education</a>
+  </nav>
+  <canvas id="blossomCanvas" aria-hidden="true"></canvas>
+  <div class="scroll-progress" id="scrollProgress" role="progressbar" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <main>
+    <header class="hero" id="home">
+      <p class="label">Independent Developer</p>
+      <h1>Arun Prakash <span class="accent">S</span></h1>
+      <p class="tagline">Independent AI Developer and Researcher</p>
+      <p class="focus-line">Building privacy-first intelligence, signal-driven models, and distributed inference systems.</p>
+      <div class="cta">
+        <a href="https://github.com/023b" class="btn btn-primary" target="_blank" rel="noopener">GitHub →</a>
+        <a href="https://linkedin.com/in/arun-prakash-s-739881230" class="btn btn-outline" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </header>
+
+    <section class="about" id="about">
+      <p class="section-label reveal">About</p>
+      <h2 class="section-title reveal">Who I am</h2>
+      <p class="reveal">I'm a recent BCA (AI & DS) graduate who enjoys building and learning about technology that solves real problems. Technically curious, independent learner, pragmatic and efficiency-focused—open to opportunities where I can learn, take initiative, and work with people who value continuous improvement.</p>
+      <p class="reveal">Preparing for Master's in Artificial Intelligence in Germany; interest leaning toward research, system architecture, and efficient AI design.</p>
+    </section>
+
+    <section id="focus">
+      <p class="section-label reveal">Focus</p>
+      <h2 class="section-title reveal">What I work on</h2>
+      <div class="focus-pills reveal">
+        <span class="pill">Local language model infrastructure</span>
+        <span class="pill">Brain–computer interfaces</span>
+        <span class="pill">Hybrid neural architectures</span>
+        <span class="pill">Distributed AI systems</span>
+        <span class="pill">Self-hosted networks</span>
+      </div>
+    </section>
+
+    <section id="projects">
+      <p class="section-label reveal">Selected systems</p>
+      <h2 class="section-title reveal">Projects</h2>
+      <div class="card-grid">
+        <article class="card reveal">
+          <h3>BCI Framework</h3>
+          <p class="meta">Brain–Computer Interface</p>
+          <p>Real-time EEG acquisition, preprocessing pipelines, ML inference, interactive dashboards. Modular design with PhysioNet support.</p>
+          <a href="https://github.com/023b/BCI" target="_blank" rel="noopener">View on GitHub →</a>
+        </article>
+        <article class="card reveal reveal-delay-1">
+          <h3>Shendu.ai</h3>
+          <p class="meta">Local LLM + Knowledge base</p>
+          <p>Local Mistral-based language model integrated with personal knowledge base. Fully offline inference and context memory.</p>
+          <a href="https://github.com/023b/Shendu.ai" target="_blank" rel="noopener">View on GitHub →</a>
+        </article>
+        <article class="card reveal reveal-delay-2">
+          <h3>Quantum-Inspired Neural Classifier</h3>
+          <p class="meta">Hybrid classical–quantum</p>
+          <p>Hybrid classical architecture with feature mapping using quantum principles. 92% accuracy, reduced training time.</p>
+          <a href="https://github.com/023b/Quantum_Feature_Mapper-" target="_blank" rel="noopener">View on GitHub →</a>
+        </article>
+        <article class="card reveal reveal-delay-3">
+          <h3>Distributed Healthcare QA</h3>
+          <p class="meta">Multi-node transformer</p>
+          <p>Multi-node transformer inference system with lightweight messaging layer and browser-based monitoring.</p>
+          <a href="https://github.com/023b" target="_blank" rel="noopener">GitHub →</a>
+        </article>
+        <article class="card reveal reveal-delay-4">
+          <h3>Live Vision Classifier</h3>
+          <p class="meta">Real-time webcam</p>
+          <p>Real-time webcam training and object recognition with OpenCV and custom class capture.</p>
+          <a href="https://github.com/023b/live_classifier" target="_blank" rel="noopener">View on GitHub →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="technologies">
+      <p class="section-label reveal">Stack</p>
+      <h2 class="section-title reveal">Technologies</h2>
+      <div class="stack-grid">
+        <div class="stack-item reveal">
+          <div class="cat">AI</div>
+          <div class="tech">PyTorch, Transformers, Computer Vision, Signal Processing</div>
+        </div>
+        <div class="stack-item reveal reveal-delay-1">
+          <div class="cat">Systems</div>
+          <div class="tech">Linux, ZFS, Containers, Distributed Nodes, VLANs</div>
+        </div>
+        <div class="stack-item reveal reveal-delay-2">
+          <div class="cat">Quantum</div>
+          <div class="tech">Qiskit</div>
+        </div>
+        <div class="stack-item reveal reveal-delay-3">
+          <div class="cat">Lang</div>
+          <div class="tech">Python, Bash, SQL</div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section id="direction">
+      <p class="section-label reveal">Direction</p>
+      <h2 class="section-title reveal">Current focus</h2>
+      <ul class="direction-list reveal">
+        <li>Efficient local inference</li>
+        <li>Signal + neural hybrid systems</li>
+        <li>Edge AI deployment</li>
+        <li>Privacy-first architectures</li>
+      </ul>
+    </section>
+
+    <section id="experience">
+      <p class="section-label reveal">Experience</p>
+      <h2 class="section-title reveal">Work</h2>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <span class="role">Cognitive Solutions & Technical Content Intern</span>
+          <span class="company">IBM (via Prolearn)</span>
+          <span class="when">Nov 2024 – Dec 2024 · Chennai · Hybrid</span>
+          <p class="desc">Web-based internship on IBM cognitive services and technical blog creation. Explored cognitive computing tools and technical documentation.</p>
+        </div>
+        <div class="timeline-item reveal reveal-delay-1">
+          <span class="role">AI Development Intern</span>
+          <span class="company">Pantech Solutions</span>
+          <span class="when">Jan 2023 – Apr 2023 · 4 mos · Remote</span>
+          <p class="desc">Real-time AI implementation and ML integration in Python. Training pipelines and model deployment, production-level ML systems.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <p class="section-label reveal">Education</p>
+      <h2 class="section-title reveal">Background</h2>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <span class="role">AI Engineer, Artificial Intelligence</span>
+          <span class="company">Datamites</span>
+          <span class="when">Aug 2025 – May 2026</span>
+        </div>
+        <div class="timeline-item reveal reveal-delay-1">
+          <span class="role">BCA with AI & Data Science</span>
+          <span class="company">Dr MGR Educational and Research Institute</span>
+          <span class="when">Sep 2022 – Jul 2025 · Grade: 8.0</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="credentials">
+      <p class="section-label reveal">Certifications</p>
+      <h2 class="section-title reveal">Credentials</h2>
+      <div class="certs reveal">
+        <div class="cert-tag has-image">
+          5-Day AI Agents Intensive (Google / Kaggle)
+          <div class="cert-tooltip"><img src="certificate%20images/5-Day%20AI%20Agents%20Intensive%20Course%20with%20Google.png" alt="Google / Kaggle Certificate" loading="lazy"></div>
+        </div>
+        <div class="cert-tag has-image">
+          AI & ML with Deep Learning (Techobytes)
+          <div class="cert-tooltip"><img src="certificate%20images/techobytes%20AI%20&%20ML%20with%20DL%20certificate.png" alt="Techobytes Certificate" loading="lazy"></div>
+        </div>
+        <div class="cert-tag has-image">
+          Technical Skill Training Program (TATTI)
+          <div class="cert-tooltip"><img src="certificate%20images/TATTI%20technical%20skill%20training%20program.png" alt="TATTI Certificate" loading="lazy"></div>
+        </div>
+        <div class="cert-tag has-image">
+          Programming in Python (SWAYAM)
+          <div class="cert-tooltip"><img src="certificate%20images/swayam%20programming%20in%20python.png" alt="SWAYAM Certificate" loading="lazy"></div>
+        </div>
+        <div class="cert-tag has-image">
+          Data analytics with AI (MGR)
+          <div class="cert-tooltip"><img src="certificate%20images/MGR%20DA%20&%20AI%20workshop.png" alt="MGR Certificate" loading="lazy"></div>
+        </div>
+        <div class="cert-tag has-image">
+          IELTS Academic
+          <div class="cert-tooltip"><img src="certificate%20images/IELTS%20result.png" alt="IELTS Result" loading="lazy"></div>
+        </div>
+        <div class="cert-tag has-image">
+          Junior Diploma in DTPP (CSC)
+          <div class="cert-tooltip"><img src="certificate%20images/CSC%20junion%20diploma%20in%20photoshop.png" alt="CSC DTPP" loading="lazy"></div>
+        </div>
+        <div class="cert-tag has-image">
+          Diploma in MS Office (CSC)
+          <div class="cert-tooltip"><img src="certificate%20images/CSC%20diploma%20in%20MS%20office.png" alt="CSC MS Office" loading="lazy"></div>
+        </div>
+        <div class="cert-tag has-image">
+          Data Science Excellence (:bitspace)
+          <div class="cert-tooltip"><img src="certificate%20images/bitspace%20data%20excellence%20certificate.png" alt="Bitspace Certificate" loading="lazy"></div>
+        </div>
+        <div class="cert-tag has-image">
+          R for Data Science (Great Learning)
+          <div class="cert-tooltip"><img src="certificate%20images/great%20learning%20R%20for%20data%20science.png" alt="Great Learning R" loading="lazy"></div>
+        </div>
+        <div class="cert-tag has-image">
+          Data science with python (Great Learning)
+          <div class="cert-tooltip"><img src="certificate%20images/great%20learning%20data%20science%20with%20python.png" alt="Great Learning Data Science" loading="lazy"></div>
+        </div>
+        <div class="cert-tag has-image">
+          Artificial intelligence with python (Great Learning)
+          <div class="cert-tooltip"><img src="certificate%20images/great%20learning%20AI%20for%20python.png" alt="Great Learning AI" loading="lazy"></div>
+        </div>
+        <div class="cert-tag has-image">
+          Data Mining (Great Learning)
+          <div class="cert-tooltip"><img src="certificate%20images/great%20learning%20data%20mining.png" alt="Great Learning Data Mining" loading="lazy"></div>
+        </div>
+        <div class="cert-tag has-image">
+          AI A–Z 2023 (Udemy)
+          <div class="cert-tooltip"><img src="certificate%20images/udemy%20AI%20A%20to%20Z%20certificate.png" alt="Udemy AI Certificate" loading="lazy"></div>
+        </div>
+        <div class="cert-tag has-image">
+          Internship on AI (Pantech.AI)
+          <div class="cert-tooltip"><img src="certificate%20images/pantech%20internship.png" alt="Pantech AI Internship" loading="lazy"></div>
+        </div>
+        <div class="cert-tag has-image">
+          Introduction to Python (IBM)
+          <div class="cert-tooltip"><img src="certificate%20images/IBM%20introduction%20to%20python.png" alt="IBM Python Certificate" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="links">
+        <a href="https://github.com/023b" target="_blank" rel="noopener">github.com/023b</a>
+        <a href="https://linkedin.com/in/arun-prakash-s-739881230" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <p class="copy">Arun Prakash S · Independent AI Developer & Researcher</p>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      const reveals = document.querySelectorAll('.reveal');
+      const scrollBar = document.getElementById('scrollProgress');
+
+      function revealOnScroll() {
+        const vh = window.innerHeight;
+        const threshold = 0.12;
+
+        reveals.forEach(function (el) {
+          const rect = el.getBoundingClientRect();
+          const inView = rect.top < vh * (1 - threshold) && rect.bottom > vh * threshold;
+          if (inView) el.classList.add('visible');
+        });
+      }
+
+      function updateScrollProgress() {
+        const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const pct = height > 0 ? (winScroll / height) * 100 : 0;
+        scrollBar.style.width = pct + '%';
+      }
+
+      window.addEventListener('scroll', function () {
+        revealOnScroll();
+        updateScrollProgress();
+      }, { passive: true });
+      window.addEventListener('resize', revealOnScroll);
+      revealOnScroll();
+      updateScrollProgress();
+    })();
+
+    // Blossom Animation
+    const blossomCanvas = document.getElementById('blossomCanvas');
+    const bCtx = blossomCanvas.getContext('2d');
+
+    function resizeCanvas() {
+        blossomCanvas.width = document.documentElement.scrollWidth || window.innerWidth;
+        blossomCanvas.height = document.documentElement.scrollHeight || window.innerHeight;
+    }
+    resizeCanvas();
+
+    const fallingBlossoms = [];
+    const settledBlossoms = [];
+    
+    let windActive = false;
+    let windDirection = 1; // 1 = right, -1 = left
+    let windStartTime = 0;
+    let windDuration = 12000; // gust length
+    let calmDuration = 15000; // straight fall between gusts
+    let lastTime = 0;
+    let lastWindEndTime = 0; // track when last gust ended
+    let windStrength = 0;
+    const MAX_WIND_STRENGTH = 2.5;
+
+    let mouseX = null;
+    let mouseY = null;
+    const MOUSE_INFLUENCE_RADIUS = 40;
+
+    class Blossom {
+        constructor() {
+            this.x = Math.random() * blossomCanvas.width;
+            this.y = -20;
+            this.vx = (Math.random() - 0.5) * 0.4;
+            this.vy = Math.random() * 0.8 + 0.6;
+            this.wobbleAmount = Math.random() * 1 + 0.5;
+            this.wobbleSpeed = Math.random() * 0.002 + 0.001;
+            this.wobbleOffset = Math.random() * Math.PI * 2;
+            this.opacity = 0.35; // a bit more transparent
+            this.settled = false;
+            this.settleTime = 0;
+            this.rotation = 0;
+            this.angularVelocity = (Math.random() - 0.5) * 0.01;
+            this.windCaught = false;
+        }
+
+        generatePetals() {
+            const petals = [];
+            for (let i = 0; i < 5; i++) {
+                const angle = (i / 5) * Math.PI * 2;
+                const distance = 3;
+                petals.push({
+                    x: Math.cos(angle) * distance,
+                    y: Math.sin(angle) * distance
+                });
+            }
+            return petals;
+        }
+
+        update(time, windForceX, deltaTime) {
+            if (!this.settled) {
+                // Gravity (faster fall for higher page)
+                const gravity = 0.02;
+                this.vy += gravity * deltaTime;
+                this.vy = Math.min(this.vy, 2.5); // increased terminal velocity
+
+                // Horizontal wind + drag
+                this.vx += windForceX * 0.02 * deltaTime; // reduced horizontal push
+                this.vx *= 0.995;
+
+                // Mouse repulsion (very local and gentle)
+                if (mouseX !== null && mouseY !== null) {
+                    const dx = this.x - mouseX;
+                    const dy = this.y - mouseY;
+                    const distSq = dx * dx + dy * dy;
+                    const radiusSq = MOUSE_INFLUENCE_RADIUS * MOUSE_INFLUENCE_RADIUS;
+                    if (distSq < radiusSq && distSq > 4) {
+                        const dist = Math.sqrt(distSq);
+                        const force = (1 - dist / MOUSE_INFLUENCE_RADIUS) * 0.12;
+                        const nx = dx / dist;
+                        const ny = dy / dist;
+                        this.vx += nx * force * deltaTime;
+                        this.vy += ny * force * deltaTime;
+                    }
+                }
+
+                // Flutter / wobble
+                const wobble = Math.sin(time * this.wobbleSpeed + this.wobbleOffset) * this.wobbleAmount * 0.06;
+
+                this.x += (this.vx + wobble) * deltaTime;
+                this.y += this.vy * deltaTime;
+
+                // Airborne spin
+                this.angularVelocity += (windForceX * 0.001 - this.angularVelocity * 0.02) * deltaTime;
+                this.rotation += this.angularVelocity * deltaTime;
+
+                // Hit the ground
+                const groundY = blossomCanvas.height - 5;
+                if (this.y >= groundY) {
+                    this.y = groundY;
+                    this.settled = true;
+                    this.settleTime = time;
+                    this.vx = 0;
+                    this.vy = 0;
+                    this.angularVelocity = 0;
+                    this.rotation = 0;
+                }
+            } else {
+                // Settled on the ground: small chance to be picked up by a gust
+                const gust = Math.abs(windForceX);
+                if (gust > 0.3 && Math.random() < 0.02 * gust) {
+                    this.settled = false;
+                    this.windCaught = true;
+                    this.vy = -(0.3 + Math.random() * 0.4);
+                    this.vx = windForceX * (0.5 + Math.random());
+                    this.angularVelocity = (Math.random() - 0.5) * 0.05;
+                }
+
+                // No extra mouse shove on the ground to keep it calm
+            }
+        }
+
+        draw() {
+            bCtx.save();
+            bCtx.globalAlpha = this.opacity;
+            // Original pink blossoming color
+            bCtx.fillStyle = '#ffb3d9';
+
+            const drawY = this.y;
+
+            if (!this.settled) {
+                bCtx.translate(this.x, drawY);
+                bCtx.rotate(this.rotation);
+                bCtx.translate(-this.x, -drawY);
+            }
+
+            // Draw center (thicker)
+            bCtx.fillRect(this.x - 1.5, drawY - 1.5, 3, 3);
+
+            // Draw 5 petals (thicker)
+            const petals = this.generatePetals();
+            petals.forEach(petal => {
+                bCtx.fillRect(this.x + petal.x - 1.5, drawY + petal.y - 1.5, 3, 3);
+            });
+
+            bCtx.restore();
+        }
+
+        isOffScreen() {
+            return (
+                this.y > blossomCanvas.height + 100 ||
+                this.x > blossomCanvas.width + 100 ||
+                this.x < -100
+            );
+        }
+    }
+
+    function animateBlossoms(time) {
+        if (!lastTime) {
+            lastTime = time; // avoid first-frame stutter
+        }
+        const deltaTime = Math.min((time - lastTime) / 16.67, 2);
+        lastTime = time;
+        
+        // Compute wind envelope (smooth fade in/out)
+        if (windActive) {
+            const t = (time - windStartTime) / windDuration;
+            if (t >= 1) {
+                windActive = false;
+                windStrength = 0;
+                lastWindEndTime = time;
+                windDirection *= -1; // next gust opposite direction
+            } else {
+                const envelope = Math.sin(t * Math.PI); // 0 → 1 → 0
+                windStrength = envelope * MAX_WIND_STRENGTH;
+            }
+        } else {
+            // Start a new gust after calmDuration has passed
+            if (time - lastWindEndTime >= calmDuration) {
+                windActive = true;
+                windStartTime = time;
+            }
+            windStrength *= 0.95;
+            if (windStrength < 0.01) windStrength = 0;
+        }
+
+        const windForceX = windStrength * windDirection;
+
+        // Clear instead of filling black to keep the existing portfolio background
+        bCtx.clearRect(0, 0, blossomCanvas.width, blossomCanvas.height);
+
+        // Spawn new blossoms continuously
+        if (Math.random() > 0.9) {
+            fallingBlossoms.push(new Blossom());
+        }
+
+        // Wrap blossoms back to top if they exit sides, so page stays full
+        for (let i = fallingBlossoms.length - 1; i >= 0; i--) {
+            fallingBlossoms[i].update(time, windForceX, deltaTime);
+            fallingBlossoms[i].draw();
+
+            if (fallingBlossoms[i].x > blossomCanvas.width + 50) {
+               fallingBlossoms[i].x = -50;
+            } else if (fallingBlossoms[i].x < -50) {
+               fallingBlossoms[i].x = blossomCanvas.width + 50;
+            }
+
+            if (fallingBlossoms[i].settled) {
+                settledBlossoms.push(fallingBlossoms.splice(i, 1)[0]);
+            }
+        }
+
+        // Update and draw settled blossoms
+        for (let i = settledBlossoms.length - 1; i >= 0; i--) {
+            settledBlossoms[i].update(time, windForceX, deltaTime);
+            settledBlossoms[i].draw();
+
+            if (settledBlossoms[i].isOffScreen()) {
+                settledBlossoms.splice(i, 1);
+            }
+        }
+
+        requestAnimationFrame(animateBlossoms);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    // Observe DOM changes in case the page grows
+    const resizeObserver = new ResizeObserver(() => resizeCanvas());
+    resizeObserver.observe(document.body);
+
+    window.addEventListener('pointermove', (e) => {
+        mouseX = e.pageX;
+        mouseY = e.pageY;
+    });
+
+    window.addEventListener('pointerleave', () => {
+        mouseX = null;
+        mouseY = null;
+    });
+
+    animateBlossoms(0);
+  </script>
+</body>
+</html>
