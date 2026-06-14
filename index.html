@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ARUN PRAKASH S · ML / CV / EDGE AI</title>
+<title>ARUN PRAKASH S · CV · ML · EDGE AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -791,6 +791,75 @@ nav a:hover{
 @media(max-width:700px){
   .skills-body{grid-template-columns:1fr;}
 }
+
+/* ─── MOBILE FIXES ────────────────────────────── */
+@media(max-width:600px){
+  /* Nav: hide text labels, show short versions, prevent overflow */
+  nav{
+    padding:0 8px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    height:44px;
+  }
+  nav::-webkit-scrollbar{display:none;}
+  nav a{
+    font-size:.5rem;
+    padding:0 8px;
+    letter-spacing:.1em;
+    flex-shrink:0;
+  }
+  #recruiter-btn{
+    font-size:.4rem;
+    padding:3px 8px;
+    flex-shrink:0;
+  }
+
+  /* Hero: fix oversized name blowout */
+  .hero-main{padding:8px 12px 0;}
+  .cmyk-name{font-size:clamp(60px,18vw,120px);}
+  .hero-role{font-size:clamp(18px,5vw,36px);transform:none;margin-top:6px;}
+  .hero-sub{font-size:.6rem;letter-spacing:.2em;padding-right:12px;text-align:left;}
+  .hero-bleed-num{display:none;}
+  .hero-strip{padding:12px 12px 16px;gap:4px;}
+  .hero-strip-item{padding:6px 10px;font-size:.5rem;}
+  .hero-strip-item span{font-size:.85rem;}
+
+  /* About */
+  .about-left{padding:32px 16px 24px;}
+  .about-headline{font-size:clamp(32px,9vw,60px);}
+  .about-body{font-size:.75rem;}
+  .about-right{padding:32px 16px 24px;}
+
+  /* Projects header */
+  .projects-header{font-size:clamp(32px,9vw,72px);padding:12px 16px 6px;}
+
+  /* Skills tape */
+  .skills-tape-top{font-size:clamp(56px,12vw,100px);padding:8px 16px;}
+  .skills-left,.skills-right{padding:24px 16px;}
+  .skills-right{border-top:4px solid var(--stone);}
+
+  /* Contact crash — prevent text overflow */
+  .contact-crash{padding:32px 16px 0;}
+  .contact-big{font-size:clamp(48px,13vw,100px);}
+  .contact-big:nth-child(2){transform:rotate(-2deg) translateY(-10px) translateX(16px);}
+  .contact-big:nth-child(3){transform:translateX(4%) rotate(1deg) translateY(-14px);}
+  .contact-sub{font-size:.7rem;}
+  .contact-links{flex-direction:column;}
+  .contact-link{border-right:none;padding:12px 16px;}
+
+  /* Certs */
+  .certs-masthead{padding:12px 16px;}
+  .certs-masthead h2{font-size:clamp(28px,8vw,60px);}
+
+  /* Panel gutters — reduce height */
+  .panel-gutter,.panel-gutter-mag,.panel-gutter-cyan,.panel-gutter-amber{height:16px;}
+
+  /* Stats row */
+  .stats-row{grid-template-columns:1fr 1fr;}
+
+  /* Layout padding */
+  .layout{padding:0 0 48px;}
+}
 .skills-left{
   border-right:4px solid var(--stone);
   padding:32px 24px;
@@ -1468,8 +1537,8 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
   <div class="hero-main">
     <div class="cmyk-name sf-reveal" data-text="ARUN">ARUN</div>
     <div class="cmyk-name sf-reveal" data-text="PRAKASH S" style="color:var(--volt);--delay:.083s">PRAKASH S</div>
-    <div class="hero-role sf-slide" style="--delay:.166s">ML / CV / EDGE AI</div>
-    <div class="hero-sub sf-slide" style="--delay:.25s">Chennai, India &nbsp;·&nbsp; BCA AI &amp; Data Science</div>
+    <div class="hero-role sf-slide" style="--delay:.166s">CV · ML · EDGE AI</div>
+    <div class="hero-sub sf-slide" style="--delay:.25s">Thuraiyur, India &nbsp;·&nbsp; BCA AI &amp; Data Science · Incoming MSc @ Surrey</div>
   </div>
 
   <div class="hero-strip">
@@ -1479,7 +1548,7 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
     </div>
     <div class="hero-strip-item sf-scale" style="--delay:.41s">
       COURSES
-      
+      <span>22+</span>
     </div>
     <div class="hero-strip-item sf-scale" style="--delay:.5s">
       IELTS BAND
@@ -1487,7 +1556,7 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
     </div>
     <div class="hero-strip-item sf-scale" style="--delay:.58s">
       GOAL
-      <span style="font-size:.7rem;letter-spacing:.04em;line-height:1.2">MSc AI<br>EUROPE</span>
+      <span style="font-size:.7rem;letter-spacing:.04em;line-height:1.2">MSc CV·RL·ML<br>SURREY '26</span>
     </div>
   </div>
 </section>
@@ -1501,7 +1570,7 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
       <div class="halftone-mag" style="inset:0;width:100%;height:100%;"></div>
       <h2 class="about-headline sf-reveal">EXPLORING<br>THE EDGES<br>OF WHAT<br>I CAN BUILD.</h2>
       <p class="about-body sf-slide" style="--delay:.1s">
-        I'm a recent BCA graduate in AI and Data Science from Chennai, interested in how machine learning actually works at the lower levels — <strong>signal processing</strong>, model internals, inference pipelines. I've spent the past couple of years building things mostly out of curiosity: an <strong>EEG pipeline</strong> to see if I could classify motor imagery, a locally-running <strong>Mistral setup</strong> because I wanted to understand quantization, and a <strong>quantum circuit experiment</strong> that turned out better than expected. I'm not certain where I'll specialize — BCI, computer vision, applied ML — but I'm actively working on figuring that out. Currently doing a PG AI certification and applying for MSc programs in Europe.
+        I'm a BCA graduate in AI and Data Science, currently interning at <strong>QbytX</strong> building computer vision QC systems for auto parts manufacturing — FastFlow anomaly detection, TensorRT inference on Jetson Orin Nano. Starting an <strong>MSc in Computer Vision, Robotics &amp; Machine Learning</strong> at the University of Surrey in September 2026, on a Luminary Award scholarship. I've spent the past couple of years building things out of curiosity: an <strong>EEG pipeline</strong> for motor imagery classification, a locally-running <strong>Mistral setup</strong> to understand quantization, and a <strong>quantum circuit experiment</strong> that hit better accuracy than the classical baseline. My focus is settling around computer vision and edge inference — where models actually have to run on constrained hardware.
       </p>
       <!-- HxH Easter Egg: barely visible -->
       <span class="hxh-whisper">// go beyond</span>
@@ -1512,6 +1581,11 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
         <div class="about-edu-detail">Dr. M.G.R. Educational Research Institute, Chennai<br>2022 – 2025<br><b>CGPA 8.02</b></div>
       </div>
 
+      <div class="about-edu-block sf-reveal" style="--delay:.08s">
+        <div class="about-edu-title" style="color:var(--volt);">MSc CV · ROBOTICS · ML</div>
+        <div class="about-edu-detail">University of Surrey, UK<br>Sep 2026 – Sep 2027<br><b>Surrey Luminary Award Scholar</b></div>
+      </div>
+
       <div class="about-edu-block sf-reveal" style="--delay:.1s">
         <div class="about-edu-title" style="color:var(--steel);">AI ENGINEER CERTIFICATION</div>
         <div class="about-edu-detail">DataMites · IABAC &amp; NASSCOM<br>Aug 2025 – Mar 2026</div>
@@ -1519,20 +1593,20 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
 
       <div class="about-edu-block sf-reveal" style="--delay:.15s">
         <div class="about-edu-title" style="color:var(--steel);">IELTS 6.5 · APS CERTIFIED</div>
-        <div class="about-edu-detail">IELTS Jul 2025 · APS Nov 2025<br>German university admission</div>
+        <div class="about-edu-detail">IELTS Jul 2025 · APS Nov 2025</div>
       </div>
 
       <div style="margin-top:24px;border-top:1px solid #333;padding-top:20px;">
         <div class="work-entry sf-slide" style="--delay:.2s">
           <div class="work-co">QbytX</div>
           <div class="work-role">Computer Vision Intern</div>
-          <div class="work-date">2025</div>
+          <div class="work-date">JAN 2026 – PRESENT</div>
           <div class="work-desc">FastFlow anomaly detection for auto parts QC. Inference + threshold calibration scripts. Deployed on Jetson Orin Nano via TensorRT.</div>
         </div>
         <div class="work-entry sf-slide" style="--delay:.25s">
           <div class="work-co">DataMites</div>
           <div class="work-role">Project Work · Credit Scoring</div>
-          <div class="work-date">2025–2026</div>
+          <div class="work-date">2025 – MAR 2026 · COMPLETED</div>
           <div class="work-desc">Built credit scoring model using LightGBM for banking client. Caught artifact features with inflated IV scores. Final Gini: 32.85.</div>
         </div>
         <div class="work-entry sf-slide" style="--delay:.3s">
@@ -1701,6 +1775,12 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
         <div class="edu-detail">Dr. M.G.R. Educational &amp; Research Institute<br>Chennai · 2022 – 2025<br><b>CGPA 8.02</b></div>
       </div>
 
+      <div class="edu-block sf-reveal" style="--delay:.08s">
+        <div class="edu-label">Incoming · Sep 2026</div>
+        <div class="edu-school" style="color:var(--volt);">MSc CV · ROBOTICS · ML</div>
+        <div class="edu-detail">University of Surrey, UK<br><b style="color:var(--volt);">Luminary Award Scholar</b></div>
+      </div>
+
       <div class="edu-block sf-reveal" style="--delay:.1s">
         <div class="edu-label">Certification</div>
         <div class="edu-school">AI ENGINEER</div>
@@ -1817,7 +1897,7 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
     <div class="contact-big sf-reveal" style="--delay:.083s;" data-text="BUILD">BUILD</div>
     <div class="contact-big sf-reveal" style="--delay:.166s;" data-text="SOMETHING">SOMETHING</div>
     <p class="contact-sub sf-slide" style="--delay:.25s">
-      BCA graduate, May 2025. Applying for MSc programs in Europe (Computer Vision, AI, ML). If you're working on something interesting in these areas, I'm open to talking. I work methodically and ship things that actually run.
+      BCA graduate, May 2025. Starting MSc Computer Vision, Robotics &amp; Machine Learning at the University of Surrey in September 2026 (Luminary Award Scholar). Currently interning at QbytX on edge CV systems. If you're working on something interesting in vision, robotics, or applied ML, I'm open to talking. I work methodically and ship things that actually run.
     </p>
   </div>
 
@@ -1851,7 +1931,7 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
   </div>
 
   <div class="footer-bar">
-    <span>ARUN PRAKASH S · BCA AI&DS · 2025</span>
+    <span>ARUN PRAKASH S · BCA AI&DS · MSc SURREY '27</span>
     <span>github.com/023b</span>
     <!-- HxH Easter Egg 3: nearly invisible -->
     <span style="color:#111;font-size:.4rem;letter-spacing:.15em;user-select:none;">HUNTER x HUNTER</span>
