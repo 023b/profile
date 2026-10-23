@@ -4,6 +4,12 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>ARUN PRAKASH S · CV · ML · EDGE AI</title>
+<meta name="description" content="Arun Prakash S, MSc student in Computer Vision, Robotics and Machine Learning at the University of Surrey. Edge vision, applied ML and self-hosted systems.">
+<meta property="og:title" content="Arun Prakash S · CV · ML · Edge AI">
+<meta property="og:description" content="MSc student at the University of Surrey. Edge vision, applied ML and self-hosted systems.">
+<meta name="theme-color" content="#000000">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Arun Prakash S","jobTitle":"MSc student, Computer Vision, Robotics and Machine Learning","alumniOf":"University of Surrey","homeLocation":"Guildford, UK","url":"https://023b.pages.dev","sameAs":["https://github.com/023b","https://linkedin.com/in/arun-prakash-s-739881230"]}</script>
+<script>document.documentElement.classList.add('js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -24,6 +30,9 @@
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:auto;}
+section{scroll-margin-top:48px;}
+body{overflow-x:clip;}
+:focus-visible{outline:3px solid var(--sky);outline-offset:3px;}
 
 body{
   background:#000;
@@ -46,6 +55,7 @@ body{
 
 /* VHS NOISE OVERLAY */
 #vhs{
+  image-rendering:pixelated;
   position:fixed;
   inset:0;
   pointer-events:none;
@@ -119,10 +129,10 @@ nav a{
   color:var(--white);
   text-decoration:none;
   font-family:var(--mono);
-  font-size:.65rem;
-  letter-spacing:.25em;
+  font-size:1rem;
+  letter-spacing:.12em;
   text-transform:uppercase;
-  padding:0 16px;
+  padding:0 14px;
   height:100%;
   display:flex;
   align-items:center;
@@ -137,20 +147,35 @@ nav a:hover{
 }
 
 /* RECRUITER TOGGLE BUTTON */
-#recruiter-btn{
+.nav-links{
+  display:flex;
+  height:100%;
+  min-width:0;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.nav-links::-webkit-scrollbar{display:none;}
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-left:auto;
+  flex-shrink:0;
+  padding-left:12px;
+}
+#recruiter-btn,#sound-btn{
   background:transparent;
   border:2px solid var(--sky);
   color:var(--sky);
   font-family:var(--mono);
-  font-size:.5rem;
-  letter-spacing:.2em;
-  padding:4px 12px;
+  font-size:.8125rem;
+  letter-spacing:.12em;
+  padding:8px 12px;
   cursor:none;
-  margin-left:auto;
   white-space:nowrap;
   flex-shrink:0;
 }
-#recruiter-btn:hover{
+#recruiter-btn:hover,#sound-btn:hover{
   background:var(--sky);
   color:#000;
 }
@@ -231,7 +256,7 @@ nav a:hover{
   align-items:center;
   justify-content:center;
   font-family:var(--bebas);
-  font-size:.55rem;
+  font-size:.9rem;
   letter-spacing:.15em;
   text-align:center;
   line-height:1.2;
@@ -277,7 +302,7 @@ nav a:hover{
   background:var(--volt);
   color:#000;
   font-family:var(--mono);
-  font-size:.6rem;
+  font-size:.95rem;
   letter-spacing:.4em;
   text-transform:uppercase;
   padding:6px 0;
@@ -398,7 +423,7 @@ nav a:hover{
 
 .hero-sub{
   font-family:var(--mono);
-  font-size:.75rem;
+  font-size:1.05rem;
   color:var(--sky);
   letter-spacing:.5em;
   text-transform:uppercase;
@@ -437,7 +462,7 @@ nav a:hover{
   padding:8px 16px;
   margin:0 -1px -1px 0;
   font-family:var(--mono);
-  font-size:.6rem;
+  font-size:.95rem;
   letter-spacing:.15em;
 }
 .hero-strip-item:nth-child(1){border-color:var(--sky);}
@@ -512,7 +537,7 @@ nav a:hover{
 .hxh-whisper{
   position:absolute;
   bottom:8px;right:12px;
-  font-size:.4rem;
+  font-size:.8125rem;
   color:rgba(135,206,235,0.12);
   font-family:var(--mono);
   letter-spacing:.1em;
@@ -536,7 +561,7 @@ nav a:hover{
 }
 .about-body{
   font-family:var(--mono);
-  font-size:.8rem;
+  font-size:1.1rem;
   line-height:1.7;
   color:var(--white);
   max-width:48ch;
@@ -547,7 +572,7 @@ nav a:hover{
 }
 .about-stat{
   font-family:var(--mono);
-  font-size:.65rem;
+  font-size:1rem;
   color:var(--steel);
   letter-spacing:.3em;
   text-transform:uppercase;
@@ -569,8 +594,8 @@ nav a:hover{
 }
 .about-edu-detail{
   font-family:var(--mono);
-  font-size:.55rem;
-  color:#888;
+  font-size:.9rem;
+  color:#b4b4ac;
   margin-top:4px;
   line-height:1.5;
 }
@@ -590,21 +615,21 @@ nav a:hover{
 }
 .work-role{
   font-family:var(--mono);
-  font-size:.6rem;
+  font-size:.95rem;
   color:var(--white);
   margin-top:2px;
 }
 .work-date{
   font-family:var(--mono);
-  font-size:.5rem;
-  color:#666;
+  font-size:.875rem;
+  color:#9a9a92;
   letter-spacing:.2em;
   margin-top:2px;
 }
 .work-desc{
   font-family:var(--mono);
-  font-size:.55rem;
-  color:#999;
+  font-size:.9rem;
+  color:#c4c4bc;
   margin-top:4px;
   line-height:1.5;
 }
@@ -672,6 +697,8 @@ nav a:hover{
 .proj-card:nth-child(5){border-color:var(--steel);}
 .proj-card:nth-child(6){border-color:var(--mag);}
 .proj-card:nth-child(7){border-color:var(--steel);}
+.proj-card:nth-child(8){border-color:var(--cyan);}
+.proj-card:nth-child(9){border-color:var(--sky);}
 
 .proj-card:hover{
   animation: cardglitch 0.083s steps(1) 2;
@@ -684,6 +711,8 @@ nav a:hover{
 .proj-card:nth-child(5):hover{box-shadow:inset 0 0 0 2px var(--steel);}
 .proj-card:nth-child(6):hover{box-shadow:inset 0 0 0 2px var(--mag);}
 .proj-card:nth-child(7):hover{box-shadow:inset 0 0 0 2px var(--steel);}
+.proj-card:nth-child(8):hover{box-shadow:inset 0 0 0 2px var(--cyan);}
+.proj-card:nth-child(9):hover{box-shadow:inset 0 0 0 2px var(--sky);}
 
 @keyframes cardglitch{
   0%{transform:skewX(0deg);}
@@ -704,7 +733,7 @@ nav a:hover{
 
 .proj-tag{
   font-family:var(--mono);
-  font-size:.5rem;
+  font-size:.875rem;
   letter-spacing:.4em;
   text-transform:uppercase;
   color:var(--mag);
@@ -720,7 +749,7 @@ nav a:hover{
 }
 .proj-desc{
   font-family:var(--mono);
-  font-size:.65rem;
+  font-size:1rem;
   line-height:1.6;
   color:#C0C0B8;
 }
@@ -735,7 +764,7 @@ nav a:hover{
 }
 .proj-tech span{
   font-family:var(--mono);
-  font-size:.5rem;
+  font-size:.875rem;
   letter-spacing:.2em;
   background:transparent;
   border:1px solid currentColor;
@@ -748,6 +777,8 @@ nav a:hover{
 .proj-card:nth-child(5) .proj-tech span{color:var(--steel);}
 .proj-card:nth-child(6) .proj-tech span{color:var(--mag);}
 .proj-card:nth-child(7) .proj-tech span{color:var(--steel);}
+.proj-card:nth-child(8) .proj-tech span{color:var(--cyan);}
+.proj-card:nth-child(9) .proj-tech span{color:var(--sky);}
 
 .proj-card .ph{
   position:absolute;
@@ -795,39 +826,25 @@ nav a:hover{
 /* ─── MOBILE FIXES ────────────────────────────── */
 @media(max-width:600px){
   /* Nav: hide text labels, show short versions, prevent overflow */
-  nav{
-    padding:0 8px;
-    overflow-x:auto;
-    scrollbar-width:none;
-    height:44px;
-  }
-  nav::-webkit-scrollbar{display:none;}
-  nav a{
-    font-size:.5rem;
-    padding:0 8px;
-    letter-spacing:.1em;
-    flex-shrink:0;
-  }
-  #recruiter-btn{
-    font-size:.4rem;
-    padding:3px 8px;
-    flex-shrink:0;
-  }
+  nav{padding:0 8px;height:48px;}
+  nav a{font-size:.8125rem;padding:0 9px;letter-spacing:.06em;flex-shrink:0;}
+  #recruiter-btn,#sound-btn{font-size:.8125rem;padding:8px 8px;letter-spacing:.02em;}
+  .nav-actions{gap:4px;padding-left:6px;}
 
   /* Hero: fix oversized name blowout */
   .hero-main{padding:8px 12px 0;}
   .cmyk-name{font-size:clamp(60px,18vw,120px);}
   .hero-role{font-size:clamp(18px,5vw,36px);transform:none;margin-top:6px;}
-  .hero-sub{font-size:.6rem;letter-spacing:.2em;padding-right:12px;text-align:left;}
+  .hero-sub{font-size:.95rem;letter-spacing:.2em;padding-right:12px;text-align:left;}
   .hero-bleed-num{display:none;}
   .hero-strip{padding:12px 12px 16px;gap:4px;}
-  .hero-strip-item{padding:6px 10px;font-size:.5rem;}
+  .hero-strip-item{padding:6px 10px;font-size:.875rem;}
   .hero-strip-item span{font-size:.85rem;}
 
   /* About */
   .about-left{padding:32px 16px 24px;}
   .about-headline{font-size:clamp(32px,9vw,60px);}
-  .about-body{font-size:.75rem;}
+  .about-body{font-size:1.05rem;}
   .about-right{padding:32px 16px 24px;}
 
   /* Projects header */
@@ -843,7 +860,7 @@ nav a:hover{
   .contact-big{font-size:clamp(48px,13vw,100px);}
   .contact-big:nth-child(2){transform:rotate(-2deg) translateY(-10px) translateX(16px);}
   .contact-big:nth-child(3){transform:translateX(4%) rotate(1deg) translateY(-14px);}
-  .contact-sub{font-size:.7rem;}
+  .contact-sub{font-size:1rem;}
   .contact-links{flex-direction:column;}
   .contact-link{border-right:none;padding:12px 16px;}
 
@@ -869,7 +886,7 @@ nav a:hover{
 }
 .skill-cluster-label{
   font-family:var(--mono);
-  font-size:.5rem;
+  font-size:.875rem;
   color:var(--steel);
   letter-spacing:.6em;
   text-transform:uppercase;
@@ -922,7 +939,7 @@ nav a:hover{
 }
 .edu-label{
   font-family:var(--mono);
-  font-size:.5rem;
+  font-size:.875rem;
   letter-spacing:.5em;
   color:var(--steel);
   text-transform:uppercase;
@@ -937,8 +954,8 @@ nav a:hover{
 }
 .edu-detail{
   font-family:var(--mono);
-  font-size:.6rem;
-  color:#888;
+  font-size:.95rem;
+  color:#b4b4ac;
   margin-top:4px;
   line-height:1.5;
 }
@@ -949,8 +966,8 @@ nav a:hover{
   padding:8px 24px;
   border-top:1px solid #333;
   font-family:var(--mono);
-  font-size:.45rem;
-  color:#555;
+  font-size:.8125rem;
+  color:#9a9a92;
   letter-spacing:.2em;
 }
 .other-skills-row span{margin-right:12px;}
@@ -981,7 +998,7 @@ nav a:hover{
 }
 .certs-masthead .issue{
   font-family:var(--mono);
-  font-size:.55rem;
+  font-size:.9rem;
   color:#000;
   letter-spacing:.3em;
 }
@@ -1015,14 +1032,14 @@ nav a:hover{
 .cert-entry:last-child{border-bottom:none;}
 .cert-name{
   font-family:var(--mono);
-  font-size:.6rem;
+  font-size:.95rem;
   color:var(--white);
   line-height:1.4;
   margin-bottom:4px;
 }
 .cert-issuer{
   font-family:var(--mono);
-  font-size:.5rem;
+  font-size:.875rem;
   color:var(--sky);
   letter-spacing:.15em;
   text-transform:uppercase;
@@ -1038,10 +1055,10 @@ nav a:hover{
   padding:12px;
   margin-bottom:12px;
 }
-.cert-special .cert-name{font-size:.7rem;color:var(--sky);}
+.cert-special .cert-name{font-size:1rem;color:var(--sky);}
 .certs-scroll-hint{
   font-family:var(--mono);
-  font-size:.5rem;
+  font-size:.875rem;
   color:var(--sky);
   letter-spacing:.4em;
   padding:8px 24px;
@@ -1141,7 +1158,7 @@ nav a:hover{
 }
 .contact-sub{
   font-family:var(--mono);
-  font-size:.8rem;
+  font-size:1.1rem;
   color:var(--white);
   letter-spacing:.1em;
   margin-top:24px;
@@ -1167,7 +1184,7 @@ nav a:hover{
   text-decoration:none;
   color:var(--white);
   font-family:var(--mono);
-  font-size:.7rem;
+  font-size:1rem;
   letter-spacing:.1em;
   transition:none;
   cursor:none;
@@ -1202,26 +1219,26 @@ nav a:hover{
 }
 .footer-bar span{
   font-family:var(--mono);
-  font-size:.5rem;
-  color:#666;
+  font-size:.875rem;
+  color:#9a9a92;
   letter-spacing:.2em;
 }
 .footer-bar .footer-intent{
   color:var(--sky);
-  font-size:.55rem;
+  font-size:.9rem;
   letter-spacing:.3em;
 }
 
 /* ═══════════════════════════════════════
    STEP-FRAME REVEAL ANIMATIONS
    ═══════════════════════════════════════ */
-.sf-reveal{
+.js .sf-reveal{
   opacity:0;
   transform:translateY(20px) rotate(-2deg);
   transition:none;
 }
 .sf-reveal.visible{
-  animation: sfpop 0.33s steps(4) forwards;
+  animation: sfpop .6s cubic-bezier(.2,.8,.2,1) forwards;
 }
 @keyframes sfpop{
   0%{opacity:0;transform:translateY(30px) rotate(-4deg) scale(.95);}
@@ -1231,12 +1248,12 @@ nav a:hover{
   100%{opacity:1;transform:translateY(0) rotate(0deg) scale(1);}
 }
 
-.sf-slide{
+.js .sf-slide{
   opacity:0;
   transition:none;
 }
 .sf-slide.visible{
-  animation: sfslide 0.25s steps(2) forwards;
+  animation: sfslide .5s cubic-bezier(.2,.8,.2,1) forwards;
 }
 @keyframes sfslide{
   0%{opacity:0;transform:translateX(-60px) skewX(15deg);}
@@ -1244,12 +1261,12 @@ nav a:hover{
   100%{opacity:1;transform:translateX(0) skewX(0);}
 }
 
-.sf-scale{
+.js .sf-scale{
   opacity:0;
   transition:none;
 }
 .sf-scale.visible{
-  animation: sfscale 0.33s steps(4) forwards;
+  animation: sfscale .6s cubic-bezier(.2,.8,.2,1) forwards;
 }
 @keyframes sfscale{
   0%{opacity:0;transform:scale(0.6) rotate(8deg);}
@@ -1259,11 +1276,16 @@ nav a:hover{
   100%{opacity:1;transform:scale(1) rotate(0);}
 }
 
+/* once the reveal has played, drop the animation so hover effects can take over cleanly */
+.sf-reveal.done,.sf-slide.done,.sf-scale.done{animation:none;opacity:1;transform:none;}
+.proj-card.done:hover{animation:cardglitch 0.083s steps(1) 2;}
+
 .kl-hover{
   display:block;
   position:relative;
 }
 .kl-hover span{
+  white-space:pre;
   display:inline-block;
   transition:none;
   position:relative;
@@ -1343,6 +1365,12 @@ body.recruiter #recruiter-btn{
   border-color:#1a1a1a;
   cursor:pointer;
 }
+body.recruiter #sound-btn{
+  border-color:#1a1a1a;
+  color:#1a1a1a;
+  cursor:pointer;
+}
+body.recruiter #sound-btn:hover{background:#1a1a1a;color:#F5F5F0;}
 body.recruiter #vhs,
 body.recruiter #scan,
 body.recruiter #gridover,
@@ -1374,7 +1402,7 @@ body.recruiter #hero{
   min-height:auto;
 }
 body.recruiter .cmyk-name{
-  color:#1a1a1a;
+  color:#1a1a1a !important;
 }
 body.recruiter .hero-role{
   color:#1a1a1a;
@@ -1408,7 +1436,7 @@ body.recruiter .about-headline{color:#1a1a1a;}
 body.recruiter .about-body{color:#333;}
 body.recruiter .about-body strong{color:#1a1a1a;}
 body.recruiter .about-stat{color:#555;}
-body.recruiter .about-edu-title{color:#1a1a1a;}
+body.recruiter .about-edu-title{color:#1a1a1a !important;}
 body.recruiter .about-edu-detail{color:#555;}
 body.recruiter #projects{border-bottom:2px solid #ccc;}
 body.recruiter .projects-header{background:#1a1a1a;color:#F5F5F0;clip-path:none;}
@@ -1431,7 +1459,7 @@ body.recruiter .proj-tech span{color:#555 !important;}
 body.recruiter #skills{border-bottom:2px solid #ccc;}
 body.recruiter .skills-tape-top{color:#1a1a1a;border-bottom:2px solid #ccc;background:#f0f0f0;}
 body.recruiter .skills-left{border-right:2px solid #ccc;}
-body.recruiter .skill-cluster-label{color:#555;border-color:#ccc;}
+body.recruiter .skill-cluster-label{color:#555 !important;border-color:#ccc !important;}
 body.recruiter .skill-pill{
   border:1px solid #999 !important;
   color:#333 !important;
@@ -1441,18 +1469,18 @@ body.recruiter .skill-pill{
 body.recruiter .skill-pill:hover{animation:none;background:#e0e0e0 !important;color:#1a1a1a !important;}
 body.recruiter .skills-right{background:#F5F5F0;background-image:none;}
 body.recruiter .edu-label{color:#555;}
-body.recruiter .edu-school{color:#1a1a1a;}
+body.recruiter .edu-school{color:#1a1a1a !important;}
 body.recruiter .edu-detail{color:#555;}
-body.recruiter .edu-detail b{color:#1a1a1a;}
+body.recruiter .edu-detail b{color:#1a1a1a !important;}
 body.recruiter #certs{border-bottom:2px solid #ccc;}
 body.recruiter .certs-masthead{background:#1a1a1a;}
 body.recruiter .certs-masthead h2{color:#F5F5F0;}
 body.recruiter .certs-masthead .issue{color:#aaa;}
 body.recruiter .cert-col{border-right-color:#e0e0e0;}
 body.recruiter .cert-name{color:#1a1a1a;}
-body.recruiter .cert-issuer{color:#555;}
-body.recruiter .cert-special{border-color:#ccc;}
-body.recruiter .cert-special .cert-name{color:#1a1a1a;}
+body.recruiter .cert-issuer{color:#555 !important;}
+body.recruiter .cert-special{border-color:#ccc !important;}
+body.recruiter .cert-special .cert-name{color:#1a1a1a !important;}
 body.recruiter #contact{background:#F5F5F0;}
 body.recruiter .contact-big{color:#1a1a1a;}
 body.recruiter .contact-big:nth-child(2){color:#555;}
@@ -1471,10 +1499,94 @@ body.recruiter .work-role{color:#333;}
 body.recruiter .work-desc{color:#555;}
 body.recruiter .certs-scroll-hint{color:#555;border-top-color:#e0e0e0;}
 body.recruiter .about-edu-block{border-left-color:#ccc;}
+
+
+/* ---- project repo links (whole card clickable via stretched link) ---- */
+.proj-link{
+  display:inline-block;
+  margin-top:16px;
+  font-family:var(--mono);
+  font-size:.8125rem;
+  letter-spacing:.14em;
+  color:var(--white);
+  text-decoration:none;
+  border-bottom:2px solid currentColor;
+  padding-bottom:2px;
+}
+.proj-link::after{content:"";position:absolute;inset:0;z-index:4;}
+.proj-card:hover .proj-link{color:var(--volt);}
+body.recruiter .proj-link{color:#1a1a1a;}
+body.recruiter .proj-card:hover .proj-link{color:#1a1a1a;}
+
+/* ---- availability line ---- */
+.avail{
+  font-family:var(--mono);
+  font-size:.875rem;
+  letter-spacing:.14em;
+  color:var(--volt);
+  text-align:right;
+  padding:6px 24px 0 0;
+}
+.avail i{display:inline-block;width:9px;height:9px;background:var(--volt);margin-right:10px;animation:availblink 1.4s steps(2) infinite;}
+@keyframes availblink{50%{opacity:.2;}}
+@media (max-width:768px){.avail{text-align:left;padding:6px 12px 0 0;letter-spacing:.08em;}}
+body.recruiter .avail{color:#1a1a1a;}
+body.recruiter .avail i{background:#1a1a1a;}
+
+/* ---- scroll progress ---- */
+#prog{position:fixed;top:0;left:0;right:0;height:3px;z-index:9990;pointer-events:none;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--cyan),var(--mag),var(--volt));}
+body.recruiter #prog{background:#1a1a1a;}
+
+/* ---- click-to-reveal contact ---- */
+button.contact-link{background:transparent;border:0;border-right:4px solid var(--steel);border-bottom:4px solid var(--steel);text-align:left;}
+.copy-btn{background:transparent;color:var(--white);border:0;border-right:4px solid var(--steel);border-bottom:4px solid var(--steel);font-family:var(--mono);font-size:.8125rem;letter-spacing:.12em;padding:0 16px;cursor:none;}
+.copy-btn:hover{background:var(--sky);color:#000;}
+body.recruiter button.contact-link,body.recruiter .copy-btn{border-color:#e0e0e0;color:#1a1a1a;cursor:pointer;}
+body.recruiter .copy-btn:hover{background:#e8e8e8;}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--volt);color:#000;font-family:var(--mono);font-size:.875rem;letter-spacing:.14em;padding:10px 16px;z-index:100001;opacity:0;pointer-events:none;transition:opacity .15s;}
+#toast.on{opacity:1;}
+
+/* ---- first visit prompt ---- */
+#who{position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.94);display:flex;align-items:center;justify-content:center;padding:16px;}
+#who[hidden]{display:none;}
+#who, #who *{cursor:auto;}
+#who button{cursor:pointer;}
+.who-box{width:min(560px,100%);border:4px solid var(--sky);background:#000;padding:28px 24px;color:var(--white);font-family:var(--mono);}
+.who-box h2{font-family:var(--bebas);font-weight:400;font-size:clamp(2.4rem,9vw,3.6rem);line-height:1;margin:6px 0 10px;color:var(--volt);}
+.who-box p{font-size:.9375rem;line-height:1.6;color:#c4c4bc;margin:0 0 20px;}
+.who-k{font-size:.8125rem !important;letter-spacing:.2em;color:var(--sky) !important;margin:0 !important;}
+.who-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.who-btns button{flex:1 1 220px;min-height:64px;background:transparent;color:var(--white);border:3px solid var(--white);font-family:var(--mono);font-size:1rem;letter-spacing:.14em;padding:12px 14px;text-align:left;}
+.who-btns button small{display:block;font-size:.8125rem;letter-spacing:.04em;color:#c4c4bc;margin-top:4px;}
+.who-btns button:hover,.who-btns button:focus-visible{background:var(--sky);color:#000;border-color:var(--sky);}
+.who-btns button:hover small,.who-btns button:focus-visible small{color:#000;}
+
+@media (prefers-reduced-motion:reduce){
+  .avail i{animation:none;}
+  #prog{transition:none;}
+  #vhs,#scan{display:none;}
+  .hero-tape-inner,.panel-gutter::after,.panel-gutter-mag::after,.panel-gutter-cyan::after,.panel-gutter-amber::after{animation:none;}
+  .sf-reveal,.sf-slide,.sf-scale{opacity:1 !important;transform:none !important;animation:none !important;}
+  .proj-card:hover,.contact-link:hover,.skill-pill:hover,.kl-hover:hover span{animation:none !important;}
+}
 </style>
 </head>
 <body>
+<script>try{if(localStorage.getItem('recruiter')==='1')document.body.classList.add('recruiter');}catch(e){}</script>
 
+<div id="prog" aria-hidden="true"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<div id="who" role="dialog" aria-modal="true" aria-labelledby="who-title" hidden>
+  <div class="who-box">
+    <p class="who-k">ARUN PRAKASH S</p>
+    <h2 id="who-title">WHO'S VISITING?</h2>
+    <p>Pick a view. You can switch at any time from the nav bar.</p>
+    <div class="who-btns">
+      <button type="button" data-v="recruiter">RECRUITER<small>Light, plain, quick to scan</small></button>
+      <button type="button" data-v="buddy">BUDDY<small>Full neon, glitch and animation</small></button>
+    </div>
+  </div>
+</div>
 <!-- OVERLAYS -->
 <canvas id="vhs" style="position:fixed;inset:0;pointer-events:none;z-index:9000;width:100%;height:100%;mix-blend-mode:screen;opacity:0.18;"></canvas>
 <div id="vhs-dropout"></div>
@@ -1503,14 +1615,19 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
 </div>
 
 <!-- NAV -->
-<nav>
-  <a href="#hero" data-section="HOME">HOME</a>
-  <a href="#about" data-section="ABOUT">ABOUT</a>
-  <a href="#projects" data-section="WORK">WORK</a>
-  <a href="#skills" data-section="STACK">STACK</a>
-  <a href="#certs" data-section="CERTS">CERTS</a>
-  <a href="#contact" data-section="CONTACT">CONTACT</a>
-  <button id="recruiter-btn">RECRUITER MODE</button>
+<nav aria-label="Sections">
+  <div class="nav-links">
+    <a href="#hero" data-section="HOME">HOME</a>
+    <a href="#about" data-section="ABOUT">ABOUT</a>
+    <a href="#projects" data-section="WORK">WORK</a>
+    <a href="#skills" data-section="STACK">STACK</a>
+    <a href="#certs" data-section="CERTS">CERTS</a>
+    <a href="#contact" data-section="CONTACT">CONTACT</a>
+  </div>
+  <div class="nav-actions">
+    <button id="sound-btn" type="button" aria-pressed="false">SOUND OFF</button>
+    <button id="recruiter-btn" type="button" aria-pressed="false">RECRUITER</button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -1538,7 +1655,8 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
     <div class="cmyk-name sf-reveal" data-text="ARUN">ARUN</div>
     <div class="cmyk-name sf-reveal" data-text="PRAKASH S" style="color:var(--volt);--delay:.083s">PRAKASH S</div>
     <div class="hero-role sf-slide" style="--delay:.166s">CV · ML · EDGE AI</div>
-    <div class="hero-sub sf-slide" style="--delay:.25s">Thuraiyur, India &nbsp;·&nbsp; BCA AI &amp; Data Science · Incoming MSc @ Surrey</div>
+    <div class="hero-sub sf-slide" style="--delay:.25s">Guildford, UK &nbsp;·&nbsp; MSc CV, Robotics &amp; ML @ Surrey</div>
+    <div class="avail sf-slide" style="--delay:.3s"><i></i>OPEN TO PART-TIME AND INTERN ROLES</div>
   </div>
 
   <div class="hero-strip">
@@ -1547,16 +1665,16 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
       <span>8.02</span>
     </div>
     <div class="hero-strip-item sf-scale" style="--delay:.41s">
-      COURSES
-      <span>22+</span>
+      INTERNSHIPS
+      <span>3</span>
     </div>
     <div class="hero-strip-item sf-scale" style="--delay:.5s">
       IELTS BAND
       <span>6.5</span>
     </div>
     <div class="hero-strip-item sf-scale" style="--delay:.58s">
-      GOAL
-      <span style="font-size:.7rem;letter-spacing:.04em;line-height:1.2">MSc CV·RL·ML<br>SURREY '26</span>
+      NOW
+      <span style="font-size:.9rem;letter-spacing:.04em;line-height:1.2">MSc @ SURREY<br>2026/27</span>
     </div>
   </div>
 </section>
@@ -1570,7 +1688,7 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
       <div class="halftone-mag" style="inset:0;width:100%;height:100%;"></div>
       <h2 class="about-headline sf-reveal">EXPLORING<br>THE EDGES<br>OF WHAT<br>I CAN BUILD.</h2>
       <p class="about-body sf-slide" style="--delay:.1s">
-        I'm a BCA graduate in AI and Data Science, currently interning at <strong>QbytX</strong> building computer vision QC systems for auto parts manufacturing — FastFlow anomaly detection, TensorRT inference on Jetson Orin Nano. Starting an <strong>MSc in Computer Vision, Robotics &amp; Machine Learning</strong> at the University of Surrey in September 2026, on a Luminary Award scholarship. I've spent the past couple of years building things out of curiosity: an <strong>EEG pipeline</strong> for motor imagery classification, a locally-running <strong>Mistral setup</strong> to understand quantization, and a <strong>quantum circuit experiment</strong> that hit better accuracy than the classical baseline. My focus is settling around computer vision and edge inference — where models actually have to run on constrained hardware.
+        I finished a BCA in AI and Data Science in 2025, then spent a year in industry: computer vision for a factory line at <strong>QbytX</strong> (FastFlow anomaly detection, YOLOv8, TensorRT on a Jetson Orin Nano), credit-risk modelling at <strong>DataMites</strong> and data science consulting at <strong>Rubixe</strong>. I'm now doing an <strong>MSc in Computer Vision, Robotics &amp; Machine Learning</strong> at the University of Surrey on a Luminary Award. On the side I run a home lab, <strong>Lancer</strong> in India and <strong>Stella</strong> in Guildford, and use it to try things out: an <strong>EEG pipeline</strong> for motor imagery, local language models, and a <strong>quantum circuit experiment</strong> that beat a classical SVM on a small dataset. I'm most interested in computer vision and edge inference, where models have to run on constrained hardware.
       </p>
       <!-- HxH Easter Egg: barely visible -->
       <span class="hxh-whisper">// go beyond</span>
@@ -1600,8 +1718,13 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
         <div class="work-entry sf-slide" style="--delay:.2s">
           <div class="work-co">QbytX</div>
           <div class="work-role">Computer Vision Intern</div>
-          <div class="work-date">JAN 2026 – PRESENT</div>
-          <div class="work-desc">FastFlow anomaly detection for auto parts QC. Inference + threshold calibration scripts. Deployed on Jetson Orin Nano via TensorRT.</div>
+          <div class="work-date">FROM JAN 2026 · COMPLETED</div>
+          <div class="work-desc">FastFlow anomaly detection and YOLOv8 for wiper motor QC. Inference and threshold calibration scripts. Deployed on a Jetson Orin Nano with TensorRT.</div>
+        </div>
+        <div class="work-entry sf-slide" style="--delay:.28s">
+          <div class="work-co">RUBIXE</div>
+          <div class="work-role">Data Science and AI Consultant · Bangalore</div>
+          <div class="work-date">NOV 2025 – JUL 2026</div>
         </div>
         <div class="work-entry sf-slide" style="--delay:.25s">
           <div class="work-co">DataMites</div>
@@ -1636,12 +1759,13 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
     <div class="proj-card sf-reveal" style="--delay:.05s">
       <span class="proj-num">01</span>
       <div class="halftone-cyan" style="inset:0;width:100%;height:100%;"></div>
-      <div class="proj-tag">EEG · SIGNAL PROC · ML</div>
+      <div class="proj-tag">EEG · VISION · BCI</div>
       <div class="proj-title kl-hover">BCI FRAMEWORK</div>
-      <p class="proj-desc">Built an EEG pipeline that reads raw brainwave data and tries to classify motor imagery in real time. Used <span class="hit-cyan">MNE-Python</span> for preprocessing — bandpass filters, ICA artifact rejection, CSP features. <span class="hit-volt">SVM and CNN</span> inference. Validated against PhysioNet datasets. Ongoing — the hardest part is keeping noise out.</p>
+      <p class="proj-desc">An EEG pipeline for motor imagery: <span class="hit-cyan">MNE-Python</span> preprocessing (bandpass filters, ICA artifact rejection, CSP features) and <span class="hit-volt">SVM and CNN</span> classifiers, checked against PhysioNet data. Now scoping a vision-only version that estimates attention and fatigue from a camera.</p>
       <div class="proj-tech">
         <span>PyTorch</span><span>MNE</span><span>scikit-learn</span><span>NumPy</span><span>EEG</span>
       </div>
+      <a class="proj-link" href="https://github.com/023b/BCI" target="_blank" rel="noopener" aria-label="BCI Framework on GitHub (opens in a new tab)">VIEW ON GITHUB</a>
       <svg class="ph" viewBox="0 0 80 80"><defs><pattern id="h1" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.5" fill="#00FFEE" opacity=".2"/></pattern></defs><rect width="80" height="80" fill="url(#h1)"/></svg>
     </div>
 
@@ -1654,6 +1778,7 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
       <div class="proj-tech">
         <span>Mistral 7B</span><span>llama.cpp</span><span>Python</span><span>GGUF</span>
       </div>
+      <a class="proj-link" href="https://github.com/023b/Shendu.ai" target="_blank" rel="noopener" aria-label="Shendu.ai on GitHub (opens in a new tab)">VIEW ON GITHUB</a>
       <svg class="ph" viewBox="0 0 80 80"><defs><pattern id="h2" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.5" fill="#FF00FF" opacity=".2"/></pattern></defs><rect width="80" height="80" fill="url(#h2)"/></svg>
     </div>
 
@@ -1662,10 +1787,11 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
       <div class="halftone" style="inset:0;width:100%;height:100%;"></div>
       <div class="proj-tag">QUANTUM ML · QISKIT · VARIATIONAL</div>
       <div class="proj-title kl-hover">QUANTUM FEATURE MAPPER</div>
-      <p class="proj-desc">Experimented with variational quantum circuits on <span class="hit-cyan">Qiskit</span>. ZZFeatureMap encodes classical data into quantum states, VQC trained via COBYLA. Hit <span class="hit-volt">92% classification accuracy</span> on the test set vs 79% with a classical SVM — interesting result though the dataset is small enough that I'd want to validate more before drawing conclusions.</p>
+      <p class="proj-desc">Experimented with variational quantum circuits on <span class="hit-cyan">Qiskit</span>. ZZFeatureMap encodes classical data into quantum states, VQC trained via COBYLA. Hit <span class="hit-volt">92% test accuracy</span> against 79% for a classical SVM, on a dataset small enough that the gap needs more data before I'd trust it.</p>
       <div class="proj-tech">
         <span>Qiskit</span><span>VQC</span><span>Python</span><span>COBYLA</span>
       </div>
+      <a class="proj-link" href="https://github.com/023b/Quantum_Feature_Mapper-" target="_blank" rel="noopener" aria-label="Quantum Feature Mapper on GitHub (opens in a new tab)">VIEW ON GITHUB</a>
       <svg class="ph" viewBox="0 0 80 80"><defs><pattern id="h3" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.5" fill="#CCFF00" opacity=".15"/></pattern></defs><rect width="80" height="80" fill="url(#h3)"/></svg>
     </div>
 
@@ -1674,10 +1800,11 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
       <div class="halftone-cyan" style="inset:0;width:100%;height:100%;opacity:.08;background-size:14px 14px;"></div>
       <div class="proj-tag">DISTRIBUTED · TRANSFORMER · HEALTHCARE</div>
       <div class="proj-title kl-hover">DISTRIBUTED HEALTHCARE QA</div>
-      <p class="proj-desc">Built a multi-node transformer QA system across <span class="hit-cyan">3 partitions</span> with federated inference and ensemble voting. More of an <span class="hit-volt">architecture learning exercise</span> than a production system — wanted to understand distributed inference at a small scale.</p>
+      <p class="proj-desc">Built a multi-node transformer QA system across <span class="hit-cyan">3 partitions</span> with federated inference and ensemble voting. More of an <span class="hit-volt">architecture learning exercise</span> than a production system, wanted to understand distributed inference at a small scale.</p>
       <div class="proj-tech">
         <span>Transformers</span><span>Distributed</span><span>Python</span><span>HuggingFace</span>
       </div>
+      <a class="proj-link" href="https://github.com/023b/DistriMedQA-Cluster" target="_blank" rel="noopener" aria-label="Distributed Healthcare QA on GitHub (opens in a new tab)">VIEW ON GITHUB</a>
       <svg class="ph" viewBox="0 0 80 80"><defs><pattern id="h4" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="7" cy="7" r="3" fill="#8B7355" opacity=".18"/></pattern></defs><rect width="80" height="80" fill="url(#h4)"/></svg>
     </div>
 
@@ -1690,6 +1817,7 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
       <div class="proj-tech">
         <span>OpenCV</span><span>MediaPipe</span><span>PyTorch</span><span>CNN</span>
       </div>
+      <a class="proj-link" href="https://github.com/023b/live_classifier" target="_blank" rel="noopener" aria-label="Live Vision Classifier on GitHub (opens in a new tab)">VIEW ON GITHUB</a>
       <svg class="ph" viewBox="0 0 80 80"><defs><pattern id="h5" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.5" fill="#CCFF00" opacity=".2"/></pattern></defs><rect width="80" height="80" fill="url(#h5)"/></svg>
     </div>
 
@@ -1702,6 +1830,7 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
       <div class="proj-tech">
         <span>GPT-2</span><span>HuggingFace</span><span>PyTorch</span><span>PEFT</span>
       </div>
+      <a class="proj-link" href="https://github.com/023b/gpt" target="_blank" rel="noopener" aria-label="GPT-2 Chatbot on GitHub (opens in a new tab)">VIEW ON GITHUB</a>
       <svg class="ph" viewBox="0 0 80 80"><defs><pattern id="h6" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.5" fill="#FF00FF" opacity=".2"/></pattern></defs><rect width="80" height="80" fill="url(#h6)"/></svg>
     </div>
 
@@ -1709,12 +1838,37 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
       <span class="proj-num">07</span>
       <div class="halftone" style="inset:0;width:100%;height:100%;"></div>
       <div class="proj-tag">HOMELAB · DOCKER · SELF-HOSTED</div>
-      <div class="proj-title kl-hover">LANCER — HOME SERVER</div>
-      <p class="proj-desc">ThinkCentre M73 Tiny running <span class="hit-cyan">10 Docker services</span> — Immich, Jellyfin, Navidrome, and others — over <span class="hit-volt">Tailscale</span>. Built to learn infrastructure, not because it was necessary. Useful for hosting personal media and experimenting with containerized services.</p>
+      <div class="proj-title kl-hover">LANCER + STELLA</div>
+      <p class="proj-desc">Lancer, a ThinkCentre M73 Tiny in India, runs <span class="hit-cyan">Immich, Jellyfin, Navidrome, Home Assistant and Frigate</span> in Docker. <span class="hit-volt">Stella</span>, a Beelink mini PC in Guildford, takes the heavier local model work. Both sit on one Tailscale network.</p>
       <div class="proj-tech">
         <span>Docker</span><span>Tailscale</span><span>Linux</span><span>Self-hosted</span>
       </div>
       <svg class="ph" viewBox="0 0 80 80"><defs><pattern id="h7" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.5" fill="#708090" opacity=".2"/></pattern></defs><rect width="80" height="80" fill="url(#h7)"/></svg>
+    </div>
+
+    <div class="proj-card sf-reveal" style="--delay:.4s">
+      <span class="proj-num">08</span>
+      <div class="halftone-cyan" style="inset:0;width:100%;height:100%;"></div>
+      <div class="proj-tag">LOCAL LLM · STUDY VAULT · DISCORD</div>
+      <div class="proj-title kl-hover">STELLA-80</div>
+      <p class="proj-desc">A self-hosted vault for coursework. An agent turns lecture documents and slide images into searchable notes using <span class="hit-cyan">local models on Ollama</span>, with a web queue board and a <span class="hit-volt">Discord bot</span> for status and alerts.</p>
+      <div class="proj-tech">
+        <span>Ollama</span><span>discord.py</span><span>Syncthing</span><span>Tailscale</span>
+      </div>
+      <a class="proj-link" href="https://github.com/023b/stella80" target="_blank" rel="noopener" aria-label="Stella-80 on GitHub (opens in a new tab)">VIEW ON GITHUB</a>
+      <svg class="ph" viewBox="0 0 80 80"><defs><pattern id="h8" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.5" fill="#00FFEE" opacity=".2"/></pattern></defs><rect width="80" height="80" fill="url(#h8)"/></svg>
+    </div>
+
+    <div class="proj-card sf-reveal" style="--delay:.45s">
+      <span class="proj-num">09</span>
+      <div class="halftone-sky" style="inset:0;width:100%;height:100%;"></div>
+      <div class="proj-tag">GENAI · FASTAPI · TEAM PROJECT</div>
+      <div class="proj-title kl-hover">CAREER READINESS ADVISOR</div>
+      <p class="proj-desc">A four-person capstone that matches a CV against job descriptions and builds a learning roadmap for the gaps. I built the <span class="hit-cyan">FastAPI backend</span> (CV parsing, LLM skill extraction, <span class="hit-volt">sentence-transformer</span> similarity) plus hosting and integration.</p>
+      <div class="proj-tech">
+        <span>FastAPI</span><span>sentence-transformers</span><span>OpenRouter</span>
+      </div>
+      <svg class="ph" viewBox="0 0 80 80"><defs><pattern id="h9" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.5" fill="#87CEEB" opacity=".2"/></pattern></defs><rect width="80" height="80" fill="url(#h9)"/></svg>
     </div>
 
   </div>
@@ -1763,6 +1917,8 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
           <span class="skill-pill" style="border-color:var(--steel);color:var(--steel);">SQL</span>
           <span class="skill-pill" style="border-color:var(--steel);color:var(--steel);">Git</span>
           <span class="skill-pill" style="border-color:var(--steel);color:var(--steel);">Bash</span>
+          <span class="skill-pill" style="border-color:var(--steel);color:var(--steel);">Jetson</span>
+          <span class="skill-pill" style="border-color:var(--steel);color:var(--steel);">FastAPI</span>
         </div>
       </div>
 
@@ -1776,7 +1932,7 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
       </div>
 
       <div class="edu-block sf-reveal" style="--delay:.08s">
-        <div class="edu-label">Incoming · Sep 2026</div>
+        <div class="edu-label">Current · Sep 2026</div>
         <div class="edu-school" style="color:var(--volt);">MSc CV · ROBOTICS · ML</div>
         <div class="edu-detail">University of Surrey, UK<br><b style="color:var(--volt);">Luminary Award Scholar</b></div>
       </div>
@@ -1796,7 +1952,7 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
     </div>
   </div>
   <div class="other-skills-row">
-    <span style="color:#444;letter-spacing:.3em;font-size:.4rem;">OTHER:</span>
+    <span style="color:#8a8a82;letter-spacing:.2em;font-size:.8125rem;">OTHER:</span>
     <span>Karate 3rd Kyu · Shotokan</span>
     <span>Photoshop</span>
     <span>MS Office</span>
@@ -1897,18 +2053,24 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
     <div class="contact-big sf-reveal" style="--delay:.083s;" data-text="BUILD">BUILD</div>
     <div class="contact-big sf-reveal" style="--delay:.166s;" data-text="SOMETHING">SOMETHING</div>
     <p class="contact-sub sf-slide" style="--delay:.25s">
-      BCA graduate, May 2025. Starting MSc Computer Vision, Robotics &amp; Machine Learning at the University of Surrey in September 2026 (Luminary Award Scholar). Currently interning at QbytX on edge CV systems. If you're working on something interesting in vision, robotics, or applied ML, I'm open to talking. I work methodically and ship things that actually run.
+      I'm in Guildford, studying for an MSc in Computer Vision, Robotics &amp; Machine Learning at the University of Surrey (Luminary Award). I'm looking for part-time work or an internship that fits around my timetable. If you're working on vision, robotics or applied ML, or need someone comfortable with Linux and hardware, get in touch.
     </p>
   </div>
 
   <div class="contact-links sf-reveal" style="--delay:.33s">
-    <a class="contact-link" href="mailto:arunsabapathi2486@gmail.com">
+    <button type="button" class="contact-link reveal" data-k="m" aria-label="Show email address">
       <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
         <rect x="1" y="4" width="16" height="10" rx="0"/>
         <polyline points="1,4 9,11 17,4"/>
       </svg>
-      arunsabapathi2486@gmail.com
-    </a>
+      <span>SHOW EMAIL</span>
+    </button>
+    <button type="button" class="contact-link reveal" data-k="t" aria-label="Show phone number">
+      <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M4 1.5h3l1.2 3.4-1.8 1.2a9 9 0 004.5 4.5l1.2-1.8 3.4 1.2v3a1.5 1.5 0 01-1.6 1.5A12.5 12.5 0 012.5 3.1 1.5 1.5 0 014 1.5z"/>
+      </svg>
+      <span>SHOW PHONE</span>
+    </button>
     <a class="contact-link" href="https://github.com/023b" target="_blank" rel="noopener">
       <svg viewBox="0 0 18 18" fill="currentColor">
         <path d="M9 1C4.58 1 1 4.58 1 9c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0017 9c0-4.42-3.58-8-8-8z"/>
@@ -1926,15 +2088,15 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
         <circle cx="9" cy="9" r="7"/>
         <path d="M9 2a7 7 0 010 14M9 2C7.34 4.23 6.5 6.56 6.5 9s.84 4.77 2.5 7M9 2c1.66 2.23 2.5 4.56 2.5 7s-.84 4.77-2.5 7M2 9h14"/>
       </svg>
-      Chennai, India
+      Guildford, UK
     </div>
   </div>
 
   <div class="footer-bar">
-    <span>ARUN PRAKASH S · BCA AI&DS · MSc SURREY '27</span>
+    <span>ARUN PRAKASH S · BCA AI &amp; DS · MSc SURREY '27</span>
     <span>github.com/023b</span>
     <!-- HxH Easter Egg 3: nearly invisible -->
-    <span style="color:#111;font-size:.4rem;letter-spacing:.15em;user-select:none;">HUNTER x HUNTER</span>
+    <span style="color:#111;font-size:.8125rem;letter-spacing:.15em;user-select:none;">HUNTER x HUNTER</span>
     <span class="footer-intent">BUILT WITH CURIOSITY / NOT WITH TEMPLATES</span>
   </div>
 </section>
@@ -1942,7 +2104,9 @@ body.recruiter .about-edu-block{border-left-color:#ccc;}
 <script>
 // ── CURSOR ──
 const xh = document.getElementById('xhair');
+xh.style.opacity = '0'; // hidden until the pointer first moves, so it does not sit in the corner
 document.addEventListener('mousemove', e => {
+  xh.style.opacity = '1';
   xh.style.left = e.clientX + 'px';
   xh.style.top  = e.clientY + 'px';
 });
@@ -1954,10 +2118,18 @@ const cf = document.getElementById('cflash');
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 let actx = null;
 
+// Sound is off by default and only starts after the visitor opts in with the nav button.
+let soundOn = false;
+try { soundOn = localStorage.getItem('sound') === '1'; } catch(e) {}
+let userGesture = false;
+['pointerdown','keydown'].forEach(ev => window.addEventListener(ev, () => { userGesture = true; }, { once:true, capture:true }));
+
 function getAudioCtx() {
+  if (!soundOn || !userGesture) return null;
   if (!actx) {
     try { actx = new AudioCtx(); } catch(e) { return null; }
   }
+  if (actx.state === 'suspended') actx.resume();
   return actx;
 }
 
@@ -2157,58 +2329,161 @@ document.querySelectorAll('nav a').forEach(a => {
   });
 });
 
-// ── RECRUITER TOGGLE ──
-let recruiterMode = false;
+// ── RECRUITER (LIGHT) MODE ──
 const recruiterBtn = document.getElementById('recruiter-btn');
+const soundBtn = document.getElementById('sound-btn');
+
+function setRecruiter(on, persist) {
+  document.body.classList.toggle('recruiter', on);
+  recruiterBtn.textContent = on ? 'EXIT' : 'RECRUITER';
+  recruiterBtn.setAttribute('aria-pressed', String(on));
+  const tc = document.querySelector('meta[name="theme-color"]');
+  if (tc) tc.setAttribute('content', on ? '#F5F5F0' : '#000000');
+  if (persist) { try { localStorage.setItem('recruiter', on ? '1' : '0'); } catch(e) {} }
+}
+setRecruiter(document.body.classList.contains('recruiter'), false);
 
 recruiterBtn.addEventListener('click', function(e) {
   e.stopPropagation();
-  getAudioCtx();
+  const goingLight = !document.body.classList.contains('recruiter');
+  setRecruiter(goingLight, true);
   playRecruiterSound();
-
-  if (!recruiterMode) {
-    const flash = document.createElement('div');
-    flash.style.cssText = 'position:fixed;inset:0;background:#fff;z-index:99998;pointer-events:none;opacity:1;';
-    document.body.appendChild(flash);
-    setTimeout(() => { flash.style.opacity = '0'; flash.style.transition = 'opacity 0.083s steps(2)'; }, 83);
-    setTimeout(() => { flash.remove(); }, 200);
-    setTimeout(() => { const vhs = document.getElementById('vhs'); if (vhs) vhs.style.opacity = '0'; }, 83);
-    setTimeout(() => { const scan = document.getElementById('scan'); if (scan) scan.style.opacity = '0'; }, 166);
-    setTimeout(() => {
-      document.body.classList.add('recruiter');
-      recruiterBtn.textContent = 'EXIT RECRUITER';
-      recruiterMode = true;
-    }, 700);
-  } else {
-    const flash = document.createElement('div');
-    flash.style.cssText = 'position:fixed;inset:0;background:#000;z-index:99998;pointer-events:none;opacity:1;';
-    document.body.appendChild(flash);
-    setTimeout(() => { flash.style.opacity = '0'; flash.style.transition = 'opacity 0.083s steps(2)'; }, 83);
-    setTimeout(() => { flash.remove(); }, 200);
-    setTimeout(() => {
-      document.body.classList.remove('recruiter');
-      recruiterBtn.textContent = 'RECRUITER MODE';
-      recruiterMode = false;
-      const vhs = document.getElementById('vhs');
-      if (vhs) vhs.style.opacity = '';
-      const scan = document.getElementById('scan');
-      if (scan) scan.style.opacity = '';
-    }, 700);
-  }
+  // short flash, no inline opacity juggling, so nothing is left in a wrong state
+  const flash = document.createElement('div');
+  flash.style.cssText = 'position:fixed;inset:0;z-index:99998;pointer-events:none;opacity:.7;background:' + (goingLight ? '#fff' : '#000');
+  document.body.appendChild(flash);
+  requestAnimationFrame(() => {
+    flash.style.transition = 'opacity .18s ease-out';
+    flash.style.opacity = '0';
+  });
+  setTimeout(() => flash.remove(), 260);
 });
 
+function paintSound() {
+  soundBtn.textContent = soundOn ? 'SOUND ON' : 'SOUND OFF';
+  soundBtn.setAttribute('aria-pressed', String(soundOn));
+}
+paintSound();
+soundBtn.addEventListener('click', function(e) {
+  e.stopPropagation();
+  userGesture = true;
+  soundOn = !soundOn;
+  try { localStorage.setItem('sound', soundOn ? '1' : '0'); } catch(err) {}
+  paintSound();
+  if (soundOn) playClick();
+});
+
+// ── FIRST VISIT: RECRUITER OR BUDDY ──
+(function(){
+  const who = document.getElementById('who');
+  let seen = false;
+  try { seen = !!localStorage.getItem('visitor'); } catch(e) {}
+  if (seen) return;
+  who.hidden = false;
+  document.body.style.overflow = 'hidden';
+  const first = who.querySelector('button');
+  setTimeout(() => first && first.focus(), 50);
+  function close(choice) {
+    who.hidden = true;
+    document.body.style.overflow = '';
+    if (choice) {
+      setRecruiter(choice === 'recruiter', true);
+      try { localStorage.setItem('visitor', choice); } catch(e) {}
+    }
+  }
+  who.addEventListener('click', e => {
+    const b = e.target.closest('button[data-v]');
+    if (b) close(b.dataset.v);
+  });
+  document.addEventListener('keydown', e => {
+    if (who.hidden) return;
+    if (e.key === 'Escape') close(null);
+    if (e.key === 'Tab') { // keep focus inside the dialog
+      const bs = [...who.querySelectorAll('button')];
+      const i = bs.indexOf(document.activeElement);
+      e.preventDefault();
+      bs[(i + (e.shiftKey ? bs.length - 1 : 1)) % bs.length].focus();
+    }
+  });
+})();
+
+// ── CONTACT: shown only after a real click, never present in the page source ──
+(function(){
+  const P = { m:["bW9jLmxpYW1nQ", "DY4NDJpaHRhcG", "FiYXNudXJh"], t:["NDY5Njg", "xMjI1Nz", "Q0Kw=="] };
+  const dec = a => atob(a.join('')).split('').reverse().join('');
+  const toast = document.getElementById('toast');
+  let tt;
+  function say(t){ toast.textContent = t; toast.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('on'), 1400); }
+  const born = Date.now();
+  document.querySelectorAll('button.reveal').forEach(btn => {
+    btn.addEventListener('click', e => {
+      if (!e.isTrusted || Date.now() - born < 600) return;
+      const k = btn.dataset.k, v = dec(P[k]);
+      const a = document.createElement('a');
+      a.className = 'contact-link';
+      a.href = (k === 'm' ? 'mailto:' : 'tel:') + v;
+      a.innerHTML = btn.querySelector('svg').outerHTML + '<span></span>';
+      a.querySelector('span').textContent = k === 'm' ? v : v.replace(/^\+44(\d{4})(\d{6})$/, '0$1 $2');
+      const c = document.createElement('button');
+      c.type = 'button'; c.className = 'copy-btn'; c.textContent = 'COPY';
+      c.setAttribute('aria-label', 'Copy ' + (k === 'm' ? 'email address' : 'phone number'));
+      c.addEventListener('click', () => {
+        (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(() => say('COPIED'), () => say('PRESS CTRL+C ON THE TEXT'));
+      });
+      btn.replaceWith(a);
+      a.after(c);
+      a.focus();
+    });
+  });
+})();
+
+// ── SCROLL PROGRESS ──
+(function(){
+  const bar = document.getElementById('prog');
+  let tick = false;
+  function upd(){
+    const h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, scrollY / h) : 0) + ')';
+    tick = false;
+  }
+  addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(upd); } }, { passive:true });
+  upd();
+})();
+
 // ── INTERSECTION OBSERVER — step-frame reveal + section chimes ──
-const sfEls = document.querySelectorAll('.sf-reveal,.sf-slide,.sf-scale');
+const SF = '.sf-reveal,.sf-slide,.sf-scale';
+function reveal(el) {
+  const delay = parseFloat(el.style.getPropertyValue('--delay') || 0) * 1000;
+  setTimeout(() => {
+    el.classList.add('visible');
+    const finish = ev => {
+      if (ev && ev.target !== el) return;
+      el.classList.add('done');
+      el.removeEventListener('animationend', finish);
+    };
+    el.addEventListener('animationend', finish);
+    setTimeout(finish, 1200); // fallback if the animation never fires (reduced motion)
+  }, delay);
+}
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
-      const delay = parseFloat(e.target.style.getPropertyValue('--delay') || 0) * 1000;
-      setTimeout(() => e.target.classList.add('visible'), delay);
+      reveal(e.target);
       obs.unobserve(e.target);
     }
   });
 }, { threshold: 0.1 });
-sfEls.forEach(el => obs.observe(el));
+// Items inside the sideways-scrolling certs strip are revealed together when the section appears,
+// otherwise the columns off-screen to the right would stay invisible.
+const certEls = document.querySelectorAll('.certs-scroll-wrapper ' + SF.split(',').join(',.certs-scroll-wrapper '));
+document.querySelectorAll(SF).forEach(el => { if (!el.closest('.certs-scroll-wrapper')) obs.observe(el); });
+const certsObs = new IntersectionObserver((entries) => {
+  if (entries.some(e => e.isIntersecting)) {
+    certEls.forEach(reveal);
+    certsObs.disconnect();
+  }
+}, { threshold: 0.05 });
+certsObs.observe(document.getElementById('certs'));
 
 const sections = document.querySelectorAll('section');
 let chimeTriggered = new Set();
@@ -2251,13 +2526,13 @@ document.querySelectorAll('.kl-hover').forEach(el => {
   if (!canvas || !canvas.getContext) return;
   const ctx2 = canvas.getContext('2d');
   let W, H;
-  function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  function resize(){ W = canvas.width = Math.ceil(window.innerWidth / 3); H = canvas.height = Math.ceil(window.innerHeight / 3); } // drawn small and scaled up: far cheaper
   resize();
   window.addEventListener('resize', resize);
   let frame = 0;
   function drawNoise(){
     frame++;
-    if(frame % 4 !== 0){ requestAnimationFrame(drawNoise); return; }
+    if(frame % 5 !== 0 || document.hidden){ requestAnimationFrame(drawNoise); return; }
     if(document.body.classList.contains('recruiter')){ requestAnimationFrame(drawNoise); return; }
     const img = ctx2.createImageData(W, H);
     const d = img.data;
@@ -2285,6 +2560,7 @@ document.querySelectorAll('.kl-hover').forEach(el => {
     }
     requestAnimationFrame(drawNoise);
   }
+  if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   requestAnimationFrame(drawNoise);
 })();
 </script>
