@@ -834,6 +834,11 @@ nav a:hover{
   /* Hero: fix oversized name blowout */
   .hero-main{padding:8px 12px 0;}
   .cmyk-name{font-size:clamp(60px,18vw,120px);}
+  /* Buddy mode: bigger name, tighter colour offsets so it stays readable, no empty space under the hero */
+  body:not(.recruiter) #hero{min-height:auto;}
+  body:not(.recruiter) .cmyk-name{font-size:clamp(84px,25vw,120px);line-height:.92;}
+  body:not(.recruiter) .cmyk-name::before{left:-3px;top:2px;opacity:.55;}
+  body:not(.recruiter) .cmyk-name::after{left:3px;top:-2px;opacity:.45;}
   .hero-role{font-size:clamp(18px,5vw,36px);transform:none;margin-top:6px;}
   .hero-sub{font-size:.95rem;letter-spacing:.2em;padding-right:12px;text-align:left;}
   .hero-bleed-num{display:none;}
@@ -1862,12 +1867,13 @@ body.recruiter .copy-btn:hover{background:#e8e8e8;}
     <div class="proj-card sf-reveal" style="--delay:.45s">
       <span class="proj-num">09</span>
       <div class="halftone-sky" style="inset:0;width:100%;height:100%;"></div>
-      <div class="proj-tag">GENAI · FASTAPI · TEAM PROJECT</div>
-      <div class="proj-title kl-hover">CAREER READINESS ADVISOR</div>
-      <p class="proj-desc">A four-person capstone that matches a CV against job descriptions and builds a learning roadmap for the gaps. I built the <span class="hit-cyan">FastAPI backend</span> (CV parsing, LLM skill extraction, <span class="hit-volt">sentence-transformer</span> similarity) plus hosting and integration.</p>
+      <div class="proj-tag">AGENTS · LOCAL LLM · LOW RAM</div>
+      <div class="proj-title kl-hover">SOPHON</div>
+      <p class="proj-desc">A lead agent that runs a team of AI agents, each in its own terminal you can watch and type into, then writes one ranked answer. Its phantom mode runs <span class="hit-cyan">80B and 120B models on a CPU-only mini PC</span> with the model capped at 16 GB of RAM and the weights <span class="hit-volt">streamed from the SSD</span>. Dead slow, but it works.</p>
       <div class="proj-tech">
-        <span>FastAPI</span><span>sentence-transformers</span><span>OpenRouter</span>
+        <span>Python</span><span>tmux</span><span>Ollama</span><span>llama.cpp</span>
       </div>
+      <a class="proj-link" href="https://github.com/023b/sophon" target="_blank" rel="noopener" aria-label="Sophon on GitHub (opens in a new tab)">VIEW ON GITHUB</a>
       <svg class="ph" viewBox="0 0 80 80"><defs><pattern id="h9" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.5" fill="#87CEEB" opacity=".2"/></pattern></defs><rect width="80" height="80" fill="url(#h9)"/></svg>
     </div>
 
